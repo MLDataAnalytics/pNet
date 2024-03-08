@@ -1,9 +1,8 @@
-
 <p align="center">
 <img src="https://github.com/YuncongMa/pNet/assets/20191790/942fd973-92bb-4839-887e-7505c57a23e9"  width="800">
 </p>
 
-# pNet <br /> A toolbox for personalized functional network modeling <br />
+# <br /> pNet: A toolbox for personalized functional network modeling <br />
 <p align="center">
 <img width="800" src="https://github.com/YuncongMa/pNet/assets/20191790/8e84d7bc-3f9b-48e7-9720-85bd65729c6f">
 </p>
