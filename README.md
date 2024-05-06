@@ -142,7 +142,6 @@ The data organization is as below.
 [1] Li H, Satterthwaite TD, Fan Y (2017). Large-scale sparse functional networks from resting state fMRI. Neuroimage 156:1-13. <br />
 [2] Cui Z, et al (2020). Individual variation in functional topography of association networks in youth. Neuron, 106(2), 340-353. <br />
 [3] Du Y, Fan Y (2013). Group information guided ICA for fMRI data analysis. <br />
-[4] Li H, Fan Y (2016). Individualized brain parcellation with integrated funcitonal and morphological information. In 2016 IEEE 13th International Symposium on Biomedical Imaging (ISBI) (pp. 992-995). IEEE. <br />
-[5] Cui Z, et al (2022). Linking Individual Differences in Personalized Functional Network Topography to Psychopathology in Youth. Biological Psychiatry. <br />
-[6] Shanmugan S, et al (2022). Sex differences in the functional topography of association networks in youth. Proceedings of the National Academy of Sciences, 119(33), e2110416119. <br />
-[7] Zhou Z, et al (2023). Multiscale functional connectivity patterns of the aging brain learned from harmonized rsfMRI data of the multi-cohort iSTAGING study. NeuroImage, 269, 119911. <br />
+[4] Cui Z, et al (2022). Linking Individual Differences in Personalized Functional Network Topography to Psychopathology in Youth. Biological Psychiatry. <br />
+[5] Shanmugan S, et al (2022). Sex differences in the functional topography of association networks in youth. Proceedings of the National Academy of Sciences, 119(33), e2110416119. <br />
+[6] Zhou Z, et al (2023). Multiscale functional connectivity patterns of the aging brain learned from harmonized rsfMRI data of the multi-cohort iSTAGING study. NeuroImage, 269, 119911. <br />
