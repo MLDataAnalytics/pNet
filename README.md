@@ -1,6 +1,6 @@
 # pNet: a Python package for computing personalized functional networks
 
-## Deployment
+## Download and install pNet
 **Download and install pNet**
 
 Change <User's directory> to a desired directory
