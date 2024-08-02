@@ -1,0 +1,13 @@
+
+Setup brain template at 2023-10-11 09:57:58
+
+
+Compute brain template at 2023-10-11 09:57:58
+
+Brain template supports both volume and surface data types
+For volume data type, a Mask file and a high resolution T1/T2 overlay image are required
+For surface data type, files for surface mesh shape including vertices and faces are required.
+And mask files for two hemispheres are required to exclude vertices in medial wall or other low SNR regions.
+Inflated surface mesh shape files are optional for different visualization purposes.
+
+Brain_Template is saved into mat and json.zip files

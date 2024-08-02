@@ -1,0 +1,17 @@
+name: pnet
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - h5py
+  - mesalib
+  - nibabel
+  - numpy
+  - pandas
+  - pip
+  - python==3.8.13
+  - pytorch==2.1.0
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - vtk>=9.2=*osmesa*

@@ -1,0 +1,96 @@
+
+Setup brain template at 2023-10-09 15:18:04
+
+
+Compute brain template at 2023-10-09 15:18:04
+
+Brain template supports both volume and surface data types
+For volume data type, a Mask file and a high resolution T1/T2 overlay image are required
+For surface data type, files for surface mesh shape including vertices and faces are required.
+And mask files for two hemispheres are required to exclude vertices in medial wall or other low SNR regions.
+Inflated surface mesh shape files are optional for different visualization purposes.
+
+
+Setup brain template at 2023-10-09 15:18:52
+
+
+Compute brain template at 2023-10-09 15:18:52
+
+Brain template supports both volume and surface data types
+For volume data type, a Mask file and a high resolution T1/T2 overlay image are required
+For surface data type, files for surface mesh shape including vertices and faces are required.
+And mask files for two hemispheres are required to exclude vertices in medial wall or other low SNR regions.
+Inflated surface mesh shape files are optional for different visualization purposes.
+
+
+Setup brain template at 2023-10-09 15:20:11
+
+
+Compute brain template at 2023-10-09 15:20:11
+
+Brain template supports both volume and surface data types
+For volume data type, a Mask file and a high resolution T1/T2 overlay image are required
+For surface data type, files for surface mesh shape including vertices and faces are required.
+And mask files for two hemispheres are required to exclude vertices in medial wall or other low SNR regions.
+Inflated surface mesh shape files are optional for different visualization purposes.
+
+
+Setup brain template at 2023-10-09 15:21:03
+
+
+Compute brain template at 2023-10-09 15:21:03
+
+Brain template supports both volume and surface data types
+For volume data type, a Mask file and a high resolution T1/T2 overlay image are required
+For surface data type, files for surface mesh shape including vertices and faces are required.
+And mask files for two hemispheres are required to exclude vertices in medial wall or other low SNR regions.
+Inflated surface mesh shape files are optional for different visualization purposes.
+
+
+Brain_Surface is created
+Brain_Template is saved into mat and json.zip files
+
+Setup brain template at 2023-10-09 15:52:37
+
+
+Compute brain template at 2023-10-09 15:52:37
+
+Brain template supports both volume and surface data types
+For volume data type, a Mask file and a high resolution T1/T2 overlay image are required
+For surface data type, files for surface mesh shape including vertices and faces are required.
+And mask files for two hemispheres are required to exclude vertices in medial wall or other low SNR regions.
+Inflated surface mesh shape files are optional for different visualization purposes.
+
+
+Brain_Surface is created
+Brain_Template is saved into mat and json.zip files
+
+Setup brain template at 2023-10-09 15:54:07
+
+
+Compute brain template at 2023-10-09 15:54:07
+
+Brain template supports both volume and surface data types
+For volume data type, a Mask file and a high resolution T1/T2 overlay image are required
+For surface data type, files for surface mesh shape including vertices and faces are required.
+And mask files for two hemispheres are required to exclude vertices in medial wall or other low SNR regions.
+Inflated surface mesh shape files are optional for different visualization purposes.
+
+
+Brain_Surface is created
+Brain_Template is saved into mat and json.zip files
+
+Setup brain template at 2023-10-10 12:00:24
+
+
+Compute brain template at 2023-10-10 12:00:24
+
+Brain template supports both volume and surface data types
+For volume data type, a Mask file and a high resolution T1/T2 overlay image are required
+For surface data type, files for surface mesh shape including vertices and faces are required.
+And mask files for two hemispheres are required to exclude vertices in medial wall or other low SNR regions.
+Inflated surface mesh shape files are optional for different visualization purposes.
+
+
+Brain_Surface is created
+Brain_Template is saved into mat and json.zip files

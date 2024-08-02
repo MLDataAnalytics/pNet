@@ -1,0 +1,19 @@
+
+Setup brain template at 2023-10-11 10:19:03
+
+
+Compute brain template at 2023-10-11 10:19:03
+
+Brain template supports both volume and surface data types
+For volume data type, a Mask file and a high resolution T1/T2 overlay image are required
+For surface data type, files for surface mesh shape including vertices and faces are required.
+And mask files for two hemispheres are required to exclude vertices in medial wall or other low SNR regions.
+Inflated surface mesh shape files are optional for different visualization purposes.
+
+
+Brain_Surface is created
+There are 29696 vertices in the left hemisphere 
+and 29716 vertices in the right hemisphere
+There are 31870 voxels in the volume-based part of the brain
+
+Brain_Template is saved into mat and json.zip files
