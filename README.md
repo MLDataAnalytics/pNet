@@ -5,14 +5,17 @@ pNet is a Python package for computing personalized, sparse, non-negative large-
 ## Getting started
 Follow the Installation Instructions to install pNet, and then check out the Tutorials and Examples to learn how to get up and running! 
 ### Download and install pNet
-#### 1.	Create a new conda environment for pNet
-``` conda env create --name pnet -f environment_pnet.yml```
-#### 2.	Download pNet 
+#### 1.	Download pNet 
 ``` git clone https://github.com/MLDataAnalytics/pNet ```
+
+#### 2.	Create a new conda environment for pNet
+``` 
+cd pNet
+conda env create --name pnet -f environment_pnet.yml
+```
 #### 3.	Install pNet
 ```
 conda activate pnet
-cd pNet
 pip install .
 ```
 
