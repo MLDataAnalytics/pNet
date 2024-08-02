@@ -1,4 +1,4 @@
-# This example is for applying pnet to volumtric fMRI data spatially normalized to MNI space
+# This example is for applying pnet to surface fMRI data preprocessed with HCP pipelines
 # 1. Specify the result folder directory in dir_pnet_result
 # 2. Provide a txt formatted scan list file, such as Scan_List.txt
 # 3. Use a prepared brain template file provided in pnet
