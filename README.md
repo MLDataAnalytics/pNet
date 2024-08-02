@@ -50,9 +50,9 @@ dataType = 'Volume'
 # data format is NIFTI, which stores a 4D matrix
 dataFormat = 'Volume (*.nii, *.nii.gz, *.mat)'
 # output folder
-dir_pnet_result = 'Test_FN17_UKBB_Workflow'
+dir_pnet_result = 'Test_FN17_Results'
 
-# number of FNs, can be changed to any positive integer number
+# number of FNs
 K = 17
 
 # Setup number of scans loaded for each bootstrap run for estimating group functional networks
