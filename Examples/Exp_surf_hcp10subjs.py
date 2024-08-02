@@ -1,9 +1,8 @@
-# This example for applying pnet to volumtric fMRI data spatially normalized to MNI space
+# This example is for applying pnet to volumtric fMRI data spatially normalized to MNI space
 # 1. Specify the result folder directory in dir_pnet_result
 # 2. Provide a txt formatted scan list file, such as Scan_List.txt
 # 3. Use a prepared brain template file provided in pnet
 # 4. Choose the desired number of FNs
-
 
 # load pnet toolbox
 import pnet
@@ -34,7 +33,6 @@ nBS = 5   # a larger number is preferred for robustness
 
 # Setup number of time points for computing group FNs with bootstraps
 nTPoints = 400  # a larger number is preferred for robustness
-
 
 # Run pnet workflow
 pnet.workflow_simple(
