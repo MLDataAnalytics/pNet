@@ -74,3 +74,10 @@ pnet.workflow_simple(
 ```
 ## Support
 If you encounter problems or bugs with pNet, or have questions or improvement suggestions, please feel free to get in touch via the [Github issues](https://github.com/MLDataAnalytics/pNet/issues).
+
+## Previous versions:
+**Matlab and Python:** https://github.com/MLDataAnalytics/pNet_Matlab
+
+**Matlab:** https://github.com/MLDataAnalytics/Collaborative_Brain_Decomposition
+
+**GIG-ICA:** https://www.nitrc.org/projects/gig-ica/
