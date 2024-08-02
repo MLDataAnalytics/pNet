@@ -20,6 +20,7 @@ conda env create --name pnet -f environment_pnet.yml
 ```
 conda activate pnet
 pip install .
+# or pip install fmripnet
 ```
 
 ### Example usages
