@@ -2,6 +2,9 @@
 
 pNet is a Python package for computing personalized, sparse, non-negative large-scale functional networks from functional magnetic resonance imaging (fMRI) data, particularly resting state fMRI data. The personalized functional networks are comparable across subjects while maintaining subject specific variation, reflected by their improved functional coherence compared with their group-level counterparts. The computation of personalized functional networks is accompanied by quality control with visualization and quantification of their spatial correspondence and functional coherence in reference to their group-level counterparts. 
 
+![image](https://github.com/user-attachments/assets/b45d02a1-2c82-43b5-b7d5-42fc38a7b298)
+
+
 ## Getting started
 Follow the Installation Instructions to install pNet, and then check out the Tutorials and Examples to learn how to get up and running! 
 ### Download and install pNet
