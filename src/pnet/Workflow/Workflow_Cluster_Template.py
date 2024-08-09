@@ -53,6 +53,7 @@ if method == 'SR-NMF':
     pnet.SR_NMF.setup_SR_NMF(
         dir_pnet_result=dir_pnet_result,
         K=K,
+        init=init,
         sampleSize=sampleSize,
         nBS=nBS,
         nTPoints=nTPoints,

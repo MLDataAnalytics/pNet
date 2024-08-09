@@ -5,13 +5,13 @@
 # Packages
 import torch
 import numpy as np
-
-
+# disable grad computation on 08/03/2024
+torch.set_grad_enabled(False)
 # other functions of pNet
 from Module.Data_Input import set_data_precision, set_data_precision_torch
 
 
-def mat_corr(X, Y=None, dataPrecision='double'):
+def mat_corr_(X, Y=None, dataPrecision='double'):
     """
     mat_corr(X, Y=None, dataPrecision='double')
     Perform corr as in MATLAB, pair-wise Pearson correlation between columns in X and Y
@@ -62,6 +62,61 @@ def mat_corr(X, Y=None, dataPrecision='double'):
         if len(X.shape) != 2:
             raise ValueError("X must be a 2D matrix")
         Corr = np.corrcoef(X, rowvar=False)
+
+    return Corr
+
+
+def mat_corr(X, Y=None, dataPrecision='double'):
+    """
+    Perform corr as in MATLAB, pair-wise Pearson correlation between columns in X and Y
+
+    :param X: 1D or 2D matrix, numpy.ndarray or torch.Tensor
+    :param Y: 1D or 2D matrix, or None, numpy.ndarray or torch.Tensor
+    :param dataPrecision: 'double' or 'single'
+    X and Y have the same number of rows
+    :return: Corr
+
+    Note: this method will use memory as it concatenates X and Y along column direction.
+    #modified version of the torch corr  on 08/05/2024
+
+    """
+
+    np_float, np_eps = set_data_precision(dataPrecision)
+    if not isinstance(X, np.ndarray):
+        X = np.ndarray(X, dtype=np_float)
+    else:
+        X = X.astype(np_float)
+    if Y is not None:
+        if not isinstance(Y, np.ndarray):
+            Y = np.ndarray(Y, dtype=np_float)
+        else:
+            Y = Y.astype(np_float)
+
+    # Check size of X and Y
+    if len(X.shape) > 2 or (Y is not None and len(Y.shape) > 2):
+        raise ValueError("X and Y must be 1D or 2D matrices")
+    if Y is not None and X.shape[0] != Y.shape[0]:
+        raise ValueError("X and Y must have the same number of columns")
+
+    if Y is not None:
+        # Subtract the mean to calculate the covariance
+        X_centered = X - np.mean(X, axis=0, keepdims=True)
+        Y_centered = Y - np.mean(Y, axis=0, keepdims=True)
+        # Compute the standard deviation of the columns
+        std_X = np.std(X_centered, axis=0, keepdims=True, ddof=1)
+        std_Y = np.std(Y_centered, axis=0, keepdims=True, ddof=1)
+        # Compute the correlation matrix
+        numerator = (X_centered.T @ Y_centered)
+        denominator = (std_X.T @ std_Y) * np.array(X.shape[0] - 1)
+        Corr = numerator / (denominator + np_eps)
+    else:
+        if len(X.shape) != 2:
+            raise ValueError("X must be a 2D matrix")
+        X_centered = X - np.mean(X, axis=0, keepdims=True)
+        std_X = np.std(X_centered, axis=0, keepdims=True, ddof=1)
+        numerator = (X_centered.T @ X_centered)
+        denominator = (std_X.T @ std_X) * np.array(X.shape[0] - 1)
+        Corr = numerator / (denominator + np.eps)
 
     return Corr
 

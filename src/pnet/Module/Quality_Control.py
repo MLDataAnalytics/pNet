@@ -125,11 +125,14 @@ def run_quality_control(dir_pnet_result: str):
 
         # Load the data
         if Data_Type == 'Surface':
-            scan_data, _, _ = load_fmri_scan(file_scan_list, dataType=Data_Type, dataFormat=Data_Format, Reshape=True, Normalization=None).astype(np_float)
+            scan_data, _, _ = load_fmri_scan(file_scan_list, dataType=Data_Type, dataFormat=Data_Format, Reshape=True, Normalization=None)
+            #scan_data = scan_data.astype(np_float)
 
         elif Data_Type == 'Volume':
             scan_data, _, _ = load_fmri_scan(file_scan_list, dataType=Data_Type, dataFormat=Data_Format, Reshape=True,
-                                       Brain_Mask=Brain_Mask, Normalization=None).astype(np_float)
+                                       Brain_Mask=Brain_Mask, Normalization=None)
+            #scan_data = scan_data.astype(np_float)
+
 
         elif Data_Type == 'Surface-Volume':
             scan_data, _, _ = load_fmri_scan(file_scan_list, dataType=Data_Type, dataFormat=Data_Format, Reshape=True,
@@ -159,6 +162,7 @@ def run_quality_control(dir_pnet_result: str):
         dir_pFN_indv_QC = os.path.join(dir_pnet_QC, list_subject_folder[i])
         if not os.path.exists(dir_pFN_indv_QC):
             os.makedirs(dir_pFN_indv_QC)
+        
         scipy.io.savemat(os.path.join(dir_pFN_indv_QC, 'Result.mat'), {'Result': Result}, do_compression=True)
 
     # Finish the final report
@@ -171,13 +175,14 @@ def run_quality_control(dir_pnet_result: str):
               f' This means those scans have at least one pFN show higher spatial similarity to a different group-level FN\n',
               file=file_Final_Report, flush=True)
 
-    file_Final_Report.close()
+    #file_Final_Report.close()
 
     # Generate visualization
     visualize_quality_control(dir_pnet_result)
 
     print('\nFinished QC at ' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + '\n',
           file=file_Final_Report, flush=True)
+    file_Final_Report.close()
 
 
 def compute_quality_control(scan_data: np.ndarray, gFN: np.ndarray, pFN: np.ndarray, dataPrecision='double', logFile=None):
@@ -204,9 +209,23 @@ def compute_quality_control(scan_data: np.ndarray, gFN: np.ndarray, pFN: np.ndar
 
     # Spatial correspondence
     K = gFN.shape[1]
-    Spatial_Correspondence = mat_corr(gFN, pFN, dataPrecision=dataPrecision)
-    Delta_Spatial_Correspondence = np.diag(Spatial_Correspondence) - np.max(
-        Spatial_Correspondence - np.diag(2 * np.ones(K)), axis=0)
+
+    temp = mat_corr(gFN, pFN, dataPrecision=dataPrecision)
+    s_c = temp.copy()
+    QC_Spatial_Correspondence = np.diag(temp).copy()
+
+    temp -= np.diag(2 * np.ones(K))  # set diagonal values to lower than -1
+    QC_Spatial_Correspondence_Control = np.max(temp, axis=0)
+
+    QC_Delta_Sim = QC_Spatial_Correspondence - QC_Spatial_Correspondence_Control
+
+    # set  back to Numpy array
+    Spatial_Correspondence = QC_Spatial_Correspondence
+    Delta_Spatial_Correspondence = QC_Delta_Sim
+
+    #Spatial_Correspondence = mat_corr(gFN, pFN, dataPrecision=dataPrecision)
+    #Delta_Spatial_Correspondence = np.diag(Spatial_Correspondence) - np.max(
+    #    Spatial_Correspondence - np.diag(2 * np.ones(K)), axis=0)
 
     # Miss match between gFNs and pFNs
     # Index starts from 1
@@ -214,19 +233,22 @@ def compute_quality_control(scan_data: np.ndarray, gFN: np.ndarray, pFN: np.ndar
         Miss_Match = np.empty((0,))
     else:
         ps = np.where(Delta_Spatial_Correspondence < 0)[0]
-        ps2 = np.argmax(Spatial_Correspondence, axis=0)
-        Miss_Match = np.concatenate((ps[:, np.newaxis] + 1, ps2[ps, np.newaxis] + 1), axis=1)
+        #ps2 = np.argmax(Spatial_Correspondence, axis=0)
+        ps2 = np.asarray(np.argmax(s_c, axis=0)) #.reshape(1, -1)[:, 0]
+        Miss_Match = np.concatenate((ps[:, np.newaxis] + 1, ps2[ps[:], np.newaxis] + 1), axis=1)
+
+        #np.concatenate((ps[:, np.newaxis] + 1, ps2[:, np.newaxis] + 1), axis=1)
 
     # Functional coherence
-    pFN_signal = scan_data @ pFN / np.sum(pFN, axis=0, keepdims=True)
+    pFN_signal = scan_data @ pFN / np.sum(np.abs(pFN), axis=0, keepdims=True)
     Corr_FH = mat_corr(pFN_signal, scan_data, dataPrecision=dataPrecision)
     Corr_FH[np.isnan(Corr_FH)] = 0  # in case of zero signals
-    Functional_Coherence = np.sum(Corr_FH.T * pFN, axis=0) / np.sum(pFN, axis=0)
+    Functional_Coherence = np.sum(Corr_FH.T * pFN, axis=0) / np.sum(np.abs(pFN), axis=0)
     # Use gFN as control
-    gFN_signal = scan_data @ gFN / np.sum(pFN, axis=0, keepdims=True)
+    gFN_signal = scan_data @ gFN / np.sum(np.abs(pFN), axis=0, keepdims=True)
     Corr_FH = mat_corr(gFN_signal, scan_data, dataPrecision=dataPrecision)
     Corr_FH[np.isnan(Corr_FH)] = 0  # in case of zero signals
-    Functional_Coherence_Control = np.sum(Corr_FH.T * gFN, axis=0) / np.sum(gFN, axis=0)
+    Functional_Coherence_Control = np.sum(Corr_FH.T * gFN, axis=0) / np.sum(np.abs(gFN), axis=0)
 
     return Spatial_Correspondence, Delta_Spatial_Correspondence, Miss_Match, Functional_Coherence, Functional_Coherence_Control
 

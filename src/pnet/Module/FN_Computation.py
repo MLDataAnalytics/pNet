@@ -389,6 +389,21 @@ def construct_Laplacian_gNb(gNb: np.ndarray, dim_space, vxI=0, X=None, alphaL=10
 
     return L, W, D
 
+def robust_normalize_V(V, factor = 0.95, dataPrecision='double'):
+    # Setup data precision and eps
+    np_float, np_eps = set_data_precision(dataPrecision)
+    # assume V is the FNs with its first dim as spatial one
+    #robust normalization of V
+    sdim, fdim = V.shape
+    if sdim < fdim:
+        print('\n  the input V has wrong dimension.' + str(sdim) + str(fdim) + '\n')
+    vtop = np.percentile(V, 1.0-factor, axis=0, keepdims=True)
+    vbottome = np.percentile(V, factor, axis=0, keepdims=True)
+    vdiff = np.maximum(vtop-vbottome, np_eps)
+    #print(vdiff)
+    #print(torch.tile(vdiff, (V.shape[0], 1)).shape)
+    V = np.clip( (V - np.tile(vbottome, (V.shape[0],1))) / np.tile(vdiff, (V.shape[0], 1)), 0.0, 1.0)
+    return V
 
 def pFN_NMF(Data, gFN, gNb, maxIter=1000, minIter=30, meanFitRatio=0.1, error=1e-4, normW=1,
             Alpha=2, Beta=30, alphaS=0, alphaL=0, vxI=0, initConv=1, ard=0, eta=0, dataPrecision='double', logFile='Log_pFN_NMF.log'):
@@ -469,6 +484,9 @@ def pFN_NMF(Data, gFN, gNb, maxIter=1000, minIter=30, meanFitRatio=0.1, error=1e
     miv = np.max(V, axis=0)
     trimInd = V / np.maximum(np.tile(miv, (dim_space, 1)), np_eps) < 5e-2
     V[trimInd] = 0
+    
+    # robust normalization of V  added on 08/03/2024
+    #V = robust_normalize_V(V, factor=1.0 / K)  # try to keep 1/K non-zero values for each component, updated on 08/03/2024
 
     # Initialize U
     U = X @ V / np.tile(np.sum(V, axis=0), (dim_time, 1))
@@ -604,7 +622,7 @@ def pFN_NMF(Data, gFN, gNb, maxIter=1000, minIter=30, meanFitRatio=0.1, error=1e
     return U, V
 
 
-def gFN_NMF(Data, K, gNb, maxIter=1000, minIter=200, error=1e-8, normW=1,
+def gFN_NMF(Data, K, gNb, init='random', maxIter=1000, minIter=200, error=1e-8, normW=1,
             Alpha=2, Beta=30, alphaS=0, alphaL=0, vxI=0, ard=0, eta=0, nRepeat=5, dataPrecision='double', logFile='Log_pFN_NMF.log'):
     """
     gFN_NMF(Data, K, gNb, maxIter=1000, minIter=30, error=1e-8, normW=1,
@@ -614,6 +632,10 @@ def gFN_NMF(Data, K, gNb, maxIter=1000, minIter=200, error=1e-8, normW=1,
     :param Data: 2D matrix [dim_time, dim_space], recommend to normalize each fMRI scan before concatenate them along the time dimension
     :param K: number of FNs
     :param gNb: graph neighborhood, a 2D matrix [N, 2] storing rows and columns of non-zero elements
+    :param init: 'nndsvda': NNDSVD with zeros filled with the average of X (better when sparsity is not desired)  #updated on 08/03/2024
+                 'random': non-negative random matrices, scaled with: sqrt(X.mean() / n_components)
+                 'nndsvd': Nonnegative Double Singular Value Decomposition (NNDSVD) initialization (better for sparseness)
+                 'nndsvdar' NNDSVD with zeros filled with small random values (generally faster, less accurate alternative to NNDSVDa for when sparsity is not desired)
     :param maxIter: maximum iteration number for multiplicative update
     :param minIter: minimum iteration in case fast convergence
     :param error: difference of cost function for convergence
@@ -663,6 +685,24 @@ def gFN_NMF(Data, K, gNb, maxIter=1000, minIter=200, error=1e-8, normW=1,
 
     # Construct the spatial affinity graph
     L, W, D = construct_Laplacian_gNb(gNb, dim_space, vxI, X, alphaL, normW, dataPrecision)
+
+    #add initialization parameter on 08/03/2024
+    # to use sklearn NMF
+    # from sklearn.decomposition import NMF   # for sklearn based NMF initialization
+    # model = NMF(n_components=K, init=init, max_iter=1, solver='mu')
+    # model._check_params(X)
+    # U = None
+    # V = None
+    # U, V = model._check_w_h(X, U, V,True)
+    # return np.transpose(V)
+
+    if init != 'random':
+        # to use sklearn NMF  on Aug 07, 2024
+        from sklearn.decomposition import NMF
+        model = NMF(n_components=K, init=init, max_iter=20000) #, random_state=0)
+        W = model.fit_transform(X)
+        H = model.components_
+        return np.transpose(H)
 
     flag_Repeat = 0
     for repeat in range(1, 1 + nRepeat):
@@ -1177,7 +1217,7 @@ def bootstrap_scan(dir_output: str, file_scan: str, file_subject_ID: str, file_s
         FID.close()
 
 
-def setup_SR_NMF(dir_pnet_result: str, K=17, Combine_Scan=False, file_gFN=None, samplingMethod='Subject', sampleSize='Automatic', nBS=50, maxIter=(2000, 500), minIter=200, meanFitRatio=0.1, error=1e-8,
+def setup_SR_NMF(dir_pnet_result: str, K=17, Combine_Scan=False, file_gFN=None, init='random', samplingMethod='Subject', sampleSize='Automatic', nBS=50, nTPoints=99999, maxIter=(2000, 500), minIter=200, meanFitRatio=0.1, error=1e-8,
                  normW=1, Alpha=2, Beta=30, alphaS=0, alphaL=0, vxI=0, ard=0, eta=0, nRepeat=5, Parallel=False, Computation_Mode='CPU', N_Thread=1, dataPrecision='double', outputFormat='Both'):
     """
     Setup SR-NMF parameters to compute gFNs and pFNs
@@ -1186,6 +1226,10 @@ def setup_SR_NMF(dir_pnet_result: str, K=17, Combine_Scan=False, file_gFN=None, 
     :param K: number of FNs
     :param Combine_Scan: False or True, whether to combine multiple scans for the same subject
     :param file_gFN: directory of a precomputed gFN in .mat format
+    :param init: 'nndsvda': NNDSVD with zeros filled with the average of X (better when sparsity is not desired)  #updated on 08/03/2024
+                 'random': non-negative random matrices, scaled with: sqrt(X.mean() / n_components)
+                 'nndsvd': Nonnegative Double Singular Value Decomposition (NNDSVD) initialization (better for sparseness)
+                 'nndsvdar' NNDSVD with zeros filled with small random values (generally faster, less accurate alternative to NNDSVDa for when spars
     :param samplingMethod: 'Subject' or 'Group_Subject'. Uniform sampling based subject ID, or group and then subject ID
     :param sampleSize: 'Automatic' or integer number, number of subjects selected for each bootstrapping run
     :param nBS: 'Automatic' or integer number, number of runs for bootstrap
@@ -1227,7 +1271,9 @@ def setup_SR_NMF(dir_pnet_result: str, K=17, Combine_Scan=False, file_gFN=None, 
                 sampleSize = N_Subject #- 1  #changed by Yong Fan: for sample datasets, all subjects/scans are used
                 #nBS = 10   # was 5, changed by Yong Fan
 
-    BootStrap = {'samplingMethod': samplingMethod, 'sampleSize': sampleSize, 'nBS': nBS}
+    # add nTPoints on 08/01/2024
+    # add init on 08/03/2024
+    BootStrap = {'samplingMethod': samplingMethod, 'sampleSize': sampleSize, 'nBS': nBS, 'nTPoints': nTPoints, 'init': init}
     Group_FN = {'file_gFN': file_gFN,
                 'BootStrap': BootStrap,
                 'maxIter': maxIter, 'minIter': minIter, 'error': error,
@@ -1350,7 +1396,7 @@ def run_FN_Computation(dir_pnet_result: str):
     # ============== gFN Computation ============== #
     # Start computation using SP-NMF
     if setting['FN_Computation']['Method'] == 'SR-NMF':
-        print('FN computation uses spatial-regularized non-negative matrix factorization method', file=logFile_FNC, flush=True)
+        print('FN computation uses sparsity-regularized non-negative matrix factorization method', file=logFile_FNC, flush=True)
 
         # Generate additional parameters
         gNb = compute_gNb(Brain_Template)
@@ -1376,6 +1422,7 @@ def run_FN_Computation(dir_pnet_result: str):
                 file_group = None
             # Parameters
             combineScan = setting['FN_Computation']['Combine_Scan']
+            init = setting['FN_Computation']['Group_FN']['BootStrap']['init']  # added on 08/03/2024
             samplingMethod = setting['FN_Computation']['Group_FN']['BootStrap']['samplingMethod']
             sampleSize = setting['FN_Computation']['Group_FN']['BootStrap']['sampleSize']
             nBS = setting['FN_Computation']['Group_FN']['BootStrap']['nBS']
@@ -1426,7 +1473,7 @@ def run_FN_Computation(dir_pnet_result: str):
                 Data,CHeader,NHeader = load_fmri_scan(file_scan_list, dataType=dataType, dataFormat=dataFormat, nTPoints=nTPoints, Reshape=True, Brain_Mask=Brain_Mask,
                                       Normalization='vp-vmax', logFile=logFile)
                 # perform NMF
-                FN_BS = gFN_NMF(Data, K, gNb, maxIter=maxIter_gFN, minIter=minIter_gFN, error=error, normW=normW,
+                FN_BS = gFN_NMF(Data, K, gNb, init=init, maxIter=maxIter_gFN, minIter=minIter_gFN, error=error, normW=normW,
                                 Alpha=Alpha, Beta=Beta, alphaS=alphaS, alphaL=alphaL, vxI=vxI, ard=ard, eta=eta,
                                 nRepeat=nRepeat, dataPrecision=dataPrecision, logFile=logFile)
                 # save results
@@ -1536,7 +1583,8 @@ def run_FN_Computation(dir_pnet_result: str):
                               Alpha=Alpha, Beta=Beta, alphaS=alphaS, alphaL=alphaL, vxI=vxI, ard=ard, eta=eta,
                               dataPrecision=dataPrecision, logFile=logFile)
             # output
-            pFN = reshape_FN(pFN.numpy(), dataType=dataType, Brain_Mask=Brain_Mask)
+            # pFN = reshape_FN(pFN.numpy(), dataType=dataType, Brain_Mask=Brain_Mask)  updated on 08/02/2024 removed .numpy()
+            pFN = reshape_FN(pFN, dataType=dataType, Brain_Mask=Brain_Mask)
             sio.savemat(os.path.join(dir_pnet_pFN_indv, 'FN.mat'), {"FN": pFN}, do_compression=True)
             sio.savemat(os.path.join(dir_pnet_pFN_indv, 'TC.mat'), {"TC": TC}, do_compression=True)
             # save FNs in nii.gz and TC as txt file  FY 07/26/2024

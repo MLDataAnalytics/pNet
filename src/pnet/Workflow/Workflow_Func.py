@@ -26,7 +26,8 @@ def workflow(dir_pnet_result: str,
              maskValue=0,
              file_surfL_inflated=None, file_surfR_inflated=None,
              method='SR-NMF',
-             K=17, 
+             K=17,
+             init='random',
              sampleSize='Automatic',
              nBS=5,
              nTPoints=99999,
@@ -69,6 +70,10 @@ def workflow(dir_pnet_result: str,
     :param file_gFN: None or a directory of a precomputed gFN in .mat format
 
     :param FN_model_parameter: advanced parameters for FN models 'SR-NMF', 'GIG-ICA'. Default is set to None, otherwise a dict. Details are in setup_SR_NMF and setup_GIG_ICA
+    :param init: 'nndsvda': NNDSVD with zeros filled with the average of X (better when sparsity is not desired)  #updated on 08/03/2024
+                 'random': non-negative random matrices, scaled with: sqrt(X.mean() / n_components)
+                 'nndsvd': Nonnegative Double Singular Value Decomposition (NNDSVD) initialization (better for sparseness)
+                 'nndsvdar' NNDSVD with zeros filled with small random values (generally faster, less accurate alternative to NNDSVDa for when sparsity is not desired)
 
     :param Parallel: False or True, whether to enable parallel computation
     :param Computation_Mode: 'CPU_Numpy', 'CPU_Torch'
@@ -149,6 +154,7 @@ def workflow(dir_pnet_result: str,
         SR_NMF.setup_SR_NMF(
                         dir_pnet_result,
                         K=K,
+                        init = init,
                         sampleSize=sampleSize, 
                         nBS=nBS,
                         nTPoints=nTPoints,
@@ -212,6 +218,7 @@ def workflow_simple(dir_pnet_result: str,
                     file_Brain_Template: str,
                     method='SR-NMF',
                     K=17,
+                    init='random',
                     sampleSize='Automatic',
                     nBS=5,
                     nTPoints=99999,
@@ -265,6 +272,7 @@ def workflow_simple(dir_pnet_result: str,
         SR_NMF.setup_SR_NMF(
             dir_pnet_result,
             K=K,
+            init=init,
             sampleSize=sampleSize,
             nBS=nBS,
             nTPoints=nTPoints,
@@ -721,6 +729,7 @@ def workflow_cluster(dir_pnet_result: str,
                      # FN computation
                      method='SR-NMF',
                      K=17,
+                     init='random',
                      sampleSize='Automatic',
                      nBS=5,
                      nTPoints=99999,
@@ -732,7 +741,7 @@ def workflow_cluster(dir_pnet_result: str,
                      dataPrecision='double',
                      # visualization
                      synchronized_view=True,
-                     synchronized_colorbar=False,
+                     synchronized_colorbar=True,
                      # Cluster
                      dir_pnet=None,
                      dir_env=None,
@@ -898,6 +907,7 @@ def workflow_cluster(dir_pnet_result: str,
     print('\n# FN computation', file=file_script)
     print(f"method = '{method}'", file=file_script)
     print(f"K = {K}", file=file_script)
+    print(f"init= '{init}'", file=file_script)
     print(f"sampleSize = {sampleSize}", file=file_script)
     print(f"nBS = {nBS}", file=file_script)
     print(f"nTPoints = {nTPoints}", file=file_script)
@@ -913,6 +923,7 @@ def workflow_cluster(dir_pnet_result: str,
         setting = SR_NMF.setup_SR_NMF(
                         dir_pnet_result,
                         K=K,
+                        init = init,
                         sampleSize=sampleSize,
                         nBS=nBS,
                         nTPoints=nTPoints,
@@ -939,10 +950,13 @@ def workflow_cluster(dir_pnet_result: str,
 
     if method == 'SR-NMF':
         if file_gFN is not None:
+            print(f"samplingMethod = '{setting['Group_FN']['BootStrap']['init']}'", file=file_script)
+            print(f"sampleSize = {setting['Group_FN']['BootStrap']['sampleSize']}", file=file_script)
             print(f"samplingMethod = '{setting['Group_FN']['BootStrap']['samplingMethod']}'", file=file_script)
             print(f"sampleSize = {setting['Group_FN']['BootStrap']['sampleSize']}", file=file_script)
             print(f"nBS = {setting['Group_FN']['BootStrap']['nBS']}", file=file_script)
             print(f"nTPoints = {setting['Group_FN']['BootStrap']['nTPoints']}", file=file_script)
+            print(f"init = {setting['Group_FN']['BootStrap']['init']}", file=file_script)
             
         print(f"maxIter = {(setting['Group_FN']['maxIter'], setting['Personalized_FN']['maxIter'])}", file=file_script)
         print(f"minIter = {(setting['Group_FN']['minIter'], setting['Personalized_FN']['minIter'])}", file=file_script)

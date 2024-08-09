@@ -66,8 +66,7 @@ def run_FN_Computation_torch(dir_pnet_result: str):
 
     if FN_Method == 'SR-NMF':
         # ============== SR-NMF ============== #
-        print('FN computation uses spatial-regularized non-negative matrix factorization method', file=logFile_FNC, flush=True)
-
+        print('FN computation uses sparsity-regularized non-negative matrix factorization method', file=logFile_FNC, flush=True)
         # Generate additional parameters
         gNb = SR_NMF.compute_gNb(Brain_Template)
         scipy.io.savemat(os.path.join(dir_pnet_FNC, 'gNb.mat'), {'gNb': gNb}, do_compression=True)
@@ -93,6 +92,7 @@ def run_FN_Computation_torch(dir_pnet_result: str):
                 file_group = None
             # Parameters
             combineScan = setting['FN_Computation']['Combine_Scan']
+            init = setting['FN_Computation']['Group_FN']['BootStrap']['init']  #added on 08/03/2024
             samplingMethod = setting['FN_Computation']['Group_FN']['BootStrap']['samplingMethod']
             sampleSize = setting['FN_Computation']['Group_FN']['BootStrap']['sampleSize']
             nBS = setting['FN_Computation']['Group_FN']['BootStrap']['nBS']
@@ -146,7 +146,7 @@ def run_FN_Computation_torch(dir_pnet_result: str):
                 Data, CHeader, NHeader = load_fmri_scan(file_scan_list, dataType=dataType, dataFormat=dataFormat, nTPoints=nTPoints, Reshape=True, Brain_Mask=Brain_Mask,
                                       Normalization='vp-vmax', logFile=logFile)
                 # perform NMF
-                FN_BS = SR_NMF.gFN_SR_NMF_torch(Data, K, gNb, maxIter=maxIter_gFN, minIter=minIter_gFN, error=error, normW=normW,
+                FN_BS = SR_NMF.gFN_SR_NMF_torch(Data, K, gNb, init=init, maxIter=maxIter_gFN, minIter=minIter_gFN, error=error, normW=normW,
                                                 Alpha=Alpha, Beta=Beta, alphaS=alphaS, alphaL=alphaL, vxI=vxI, ard=ard, eta=eta,
                                                 nRepeat=nRepeat, dataPrecision=dataPrecision, logFile=logFile)
                 # save results

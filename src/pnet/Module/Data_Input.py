@@ -18,7 +18,8 @@ import torch
 import h5py
 import time
 import gzip
-
+# disable grad computation on 08/03/2024
+torch.set_grad_enabled(False)
 
 def load_matlab_array(file_matlab: str,
                       variable_name: str):
@@ -495,6 +496,10 @@ def load_fmri_scan(file_scan_list: str,
 
         # Combine scans along the time dimension
         # The Data will be permuted to [dim_time dim_space] for both 2D and 4D matrices
+        if nTPoints < 50:
+            #all available timepoints will be used
+            nTPoints = 999999
+
         if i == 0:
             if dataType in ('Surface', 'Surface-Volume'):
                 if Normalization is not None and Normalization is not False:

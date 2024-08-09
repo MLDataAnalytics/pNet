@@ -14,7 +14,7 @@ Follow the Installation Instructions to install pNet, and then check out the Tut
 #### 2.	Create a new conda environment for pNet
 ``` 
 cd pNet
-conda env create --name pnet -f environment_pnet.yml
+conda env create --name fmripnet -f environment_pnet.yml
 ```
 #### 3.	Install pNet
 ```

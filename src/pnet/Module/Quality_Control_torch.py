@@ -194,11 +194,12 @@ def compute_quality_control_torch(scan_data, gFN, pFN, dataPrecision='double', l
     K = gFN.shape[1]
 
     temp = mat_corr_torch(gFN, pFN, dataPrecision=dataPrecision)
+    s_c = temp.cpu().numpy().copy()
     QC_Spatial_Correspondence = torch.clone(torch.diag(temp))
     temp -= torch.diag(2 * torch.ones(K))  # set diagonal values to lower than -1
     QC_Spatial_Correspondence_Control = torch.max(temp, dim=0)[0]
     QC_Delta_Sim = QC_Spatial_Correspondence - QC_Spatial_Correspondence_Control
-
+   
     # Convert back to Numpy array
     Spatial_Correspondence = QC_Spatial_Correspondence.cpu().numpy()
     Delta_Spatial_Correspondence = QC_Delta_Sim.cpu().numpy()
@@ -209,24 +210,20 @@ def compute_quality_control_torch(scan_data, gFN, pFN, dataPrecision='double', l
         Miss_Match = np.empty((0,))
     else:
         ps = np.where(Delta_Spatial_Correspondence < 0)[0]
-        ps2 = np.asarray(np.argmax(Spatial_Correspondence, axis=0)).reshape(1, -1)[:, 0]
-        print(ps, ps2)
-        if len(ps) > 0:
-           Miss_Match = ps[:, np.newaxis] + 1
-           if len(ps2) > 0:
-              Miss_Match = np.concatenate((Miss_Match, ps2[:, np.newaxis] + 1), axis=0)
-        elif len(ps2) > 0:
-           Miss_Match = ps2[:, np.newaxis] + 1
-        #np.concatenate((ps[:, np.newaxis] + 1, ps2[:, np.newaxis] + 1), axis=1)
+        #ps2 = np.asarray(np.argmax(Spatial_Correspondence, axis=0)).reshape(1, -1)[:, 0]
+        ps2 = np.asarray(np.argmax(s_c, axis=0))
+        Miss_Match = np.concatenate((ps[:, np.newaxis] + 1, ps2[ps[:], np.newaxis] + 1), axis=1)
 
     # Functional coherence
     # in case of negative spatial weightings, use np.abs
     pFN_signal = scan_data @ pFN / torch.sum(np.abs(pFN), dim=0, keepdims=True)
+    
     Corr_FH = mat_corr_torch(pFN_signal, scan_data, dataPrecision=dataPrecision)
     Corr_FH[torch.isnan(Corr_FH)] = 0  # in case of zero signals
     Functional_Coherence = torch.sum(Corr_FH.T * pFN, dim=0) / torch.sum(np.abs(pFN), dim=0)
     # Use gFN as control
     gFN_signal = scan_data @ gFN / torch.sum(np.abs(pFN), dim=0, keepdims=True)
+    
     Corr_FH = mat_corr_torch(gFN_signal, scan_data, dataPrecision=dataPrecision)
     Corr_FH[torch.isnan(Corr_FH)] = 0  # in case of zero signals
     Functional_Coherence_Control = torch.sum(Corr_FH.T * gFN, dim=0) / torch.sum(np.abs(gFN), dim=0)
@@ -407,5 +404,3 @@ def compute_quality_control_torch_cluster(dir_pnet_result: str, jobID=1):
     dir_pFN_indv_QC = os.path.join(dir_pnet_QC, list_subject_folder_unique[jobID-1])
     os.makedirs(dir_pFN_indv_QC, exist_ok=True)
     scipy.io.savemat(os.path.join(dir_pFN_indv_QC, 'Result.mat'), {'Result': Result}, do_compression=True)
-
-

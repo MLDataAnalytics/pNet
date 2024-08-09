@@ -1163,7 +1163,7 @@ def plot_FN_brain_surface_volume_7view(brain_map: np.ndarray,
 # =========== Module =========== #
 
 
-def setup_Visualization(dir_pnet_result: str, synchronized_view=True, synchronized_colorbar=False):
+def setup_Visualization(dir_pnet_result: str, synchronized_view=True, synchronized_colorbar=True):
     """
     Setup visualization styles, including synchronized display
 

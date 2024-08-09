@@ -13,7 +13,7 @@ from Basic.Matrix_Computation import *
 
 
 def setup_SR_NMF(dir_pnet_result: str or None, K=17, Combine_Scan=False,
-                 file_gFN=None, samplingMethod='Subject', sampleSize='Automatic', nBS=50, nTPoints=99999,
+                 file_gFN=None, init='random', samplingMethod='Subject', sampleSize='Automatic', nBS=50, nTPoints=99999,
                  maxIter=(2000, 500), minIter=200, meanFitRatio=0.1, error=1e-8,
                  normW=1, Alpha=2, Beta=30, alphaS=0, alphaL=0, vxI=0, ard=0, eta=0, nRepeat=5,
                  Parallel=False, Computation_Mode='CPU', N_Thread=1, dataPrecision='double', outputFormat='Both'):
@@ -26,6 +26,10 @@ def setup_SR_NMF(dir_pnet_result: str or None, K=17, Combine_Scan=False,
     :param file_gFN: directory of a precomputed gFN in .mat format
 
     # model parameters
+    :param init: 'nndsvda': NNDSVD with zeros filled with the average of X (better when sparsity is not desired)  #updated on 08/03/2024
+                 'random': non-negative random matrices, scaled with: sqrt(X.mean() / n_components)
+                 'nndsvd': Nonnegative Double Singular Value Decomposition (NNDSVD) initialization (better for sparseness)
+                 'nndsvdar' NNDSVD with zeros filled with small random values (generally faster, less accurate alternative to NNDSVDa for when spars
     :param samplingMethod: 'Subject' or 'Group_Subject'. Uniform sampling based subject ID, or group and then subject ID
     :param sampleSize: 'Automatic' or integer number, number of subjects selected for each bootstrapping run
     :param nBS: 'Automatic' or integer number, number of runs for bootstrap
@@ -69,7 +73,9 @@ def setup_SR_NMF(dir_pnet_result: str or None, K=17, Combine_Scan=False,
                 sampleSize = N_Subject #- 1  #changed by Yong Fan: for sample datasets, all subjects/scans are used
                 #nBS = 10   # was 5, changed by Yong Fan
 
-    BootStrap = {'samplingMethod': samplingMethod, 'sampleSize': sampleSize, 'nBS': nBS, 'nTPoints': nTPoints}  #add nTPoints on 08/01/2024
+    # add nTPoints on 08/01/2024
+    # add init on 08/03/2024
+    BootStrap = {'samplingMethod': samplingMethod, 'sampleSize': sampleSize, 'nBS': nBS, 'nTPoints': nTPoints, 'init': init}
     if isinstance(maxIter, tuple):
         gFN_maxIter = maxIter[0]
         pFN_maxIter = maxIter[1]
@@ -134,6 +140,7 @@ def update_model_parameter(dir_pnet_result: str or None, FN_model_parameter, set
     # default model parameters
     FN_Model = dict(
         file_gFN=None,
+        init='random',
         samplingMethod='Subject',
         sampleSize='Automatic',
         nBS=50,
@@ -157,7 +164,8 @@ def update_model_parameter(dir_pnet_result: str or None, FN_model_parameter, set
     for i in FN_model_parameter.keys():
         FN_Model[i] = FN_model_parameter[i]
 
-    BootStrap = {'samplingMethod': FN_Model['samplingMethod'], 'sampleSize': FN_Model['sampleSize'], 'nBS': FN_Model['nBS'], 'nTPoints': FN_Model['nTPoints']}  #add nTPoints on 08/01/2024
+    BootStrap = {'samplingMethod': FN_Model['samplingMethod'], 'sampleSize': FN_Model['sampleSize'], 'nBS': FN_Model['nBS'],
+                 'nTPoints': FN_Model['nTPoints'], 'init': FN_Model['init']}  #add nTPoints on 08/01/2024; add init on 08/03/2024
     FN_Model['BootStrap'] = BootStrap
     maxIter = FN_Model['maxIter']
     if isinstance(maxIter, tuple):
@@ -209,9 +217,7 @@ def construct_Laplacian_gNb(gNb: np.ndarray, dim_space, vxI=0, X=None, alphaL=10
 
     Yuncong Ma, 9/13/2023
     """
-
     np_float, np_eps = set_data_precision(dataPrecision)
-
     # Construct the spatial affinity graph
     # gNb uses index starting from 1
     W = scipy.sparse.coo_matrix((np.ones(gNb.shape[0]), (gNb[:, 0] - 1, gNb[:, 1] - 1)), shape=(dim_space, dim_space), dtype=np_float)
@@ -235,7 +241,6 @@ def construct_Laplacian_gNb(gNb: np.ndarray, dim_space, vxI=0, X=None, alphaL=10
         D = D_mhalf @ D @ D_mhalf * alphaL
 
     return L, W, D
-
 
 def compute_gNb(Brain_Template, logFile=None):
     """
@@ -396,7 +401,6 @@ def compute_gNb(Brain_Template, logFile=None):
 
     return gNb
 
-
 def normalize_data_torch(data, algorithm='vp', normalization='vmax', dataPrecision='double'):
     """
     Normalize data by algorithm and normalization settings
@@ -540,7 +544,6 @@ def initialize_u_torch(X, U0, V0, error=1e-4, maxIter=1000, minIter=30, meanFitR
     U_final = U
     return U_final
 
-
 def data_fitting_error_torch(X, U, V, deltaVU=0, dVordU=1, dataPrecision='double'):
     """
     Calculate the datat fitting of X'=UV' with terms
@@ -556,7 +559,6 @@ def data_fitting_error_torch(X, U, V, deltaVU=0, dVordU=1, dataPrecision='double
     Consistent to MATLAB function fitting_initialize_u(X, U, V, deltaVU, dVordU, dataPrecision)
     By Yuncong Ma, 9/6/2023
     """
-
     torch_float, torch_eps = set_data_precision_torch(dataPrecision)
     if not isinstance(X, torch.Tensor):
         X = torch.tensor(X, dtype=torch_float)
@@ -616,7 +618,6 @@ def data_fitting_error_torch(X, U, V, deltaVU=0, dVordU=1, dataPrecision='double
     Fitting_Error = obj_NMF
     return Fitting_Error
 
-
 def normalize_u_v_torch(U, V, NormV, Norm, dataPrecision='double'):
     """
     Normalize U and V with terms
@@ -631,7 +632,6 @@ def normalize_u_v_torch(U, V, NormV, Norm, dataPrecision='double'):
     Consistent to MATLAB function normalize_u_v(U, V, NormV, Norm, dataPrecision)
     By Yuncong Ma, 9/5/2023
     """
-
     torch_float, torch_eps = set_data_precision_torch(dataPrecision)
     if not isinstance(U, torch.Tensor):
         U = torch.tensor(U, dtype=torch_float)
@@ -715,6 +715,21 @@ def construct_Laplacian_gNb_torch(gNb, dim_space, vxI=0, X=None, alphaL=10, norm
 
     return L, W, D
 
+def robust_normalize_V(V, factor = 0.95, dataPrecision='double'):
+    # Setup data precision and eps
+    torch_float, torch_eps = set_data_precision_torch(dataPrecision)
+    # assume V is the FNs with its first dim as spatial one
+    #robust normalization of V
+    sdim, fdim = V.shape
+    if sdim < fdim:
+        print('\n  the input V has wrong dimension.' + str(sdim) + str(fdim) + '\n') 
+    vtop = torch.quantile(V, 1.0-factor, dim=0, keepdim=True)
+    vbottome = torch.quantile(V, factor, dim=0, keepdim=True)
+    vdiff = torch.maximum(vtop-vbottome, torch_eps)
+    #print(vdiff)
+    #print(torch.tile(vdiff, (V.shape[0], 1)).shape)
+    V = torch.clamp( (V - torch.tile(vbottome, (V.shape[0],1))) / torch.tile(vdiff, (V.shape[0], 1)), min = 0.0, max = 1.0)
+    return V
 
 def pFN_SR_NMF_torch(Data, gFN, gNb, maxIter=1000, minIter=30, meanFitRatio=0.1, error=1e-4, normW=1,
                      Alpha=2, Beta=30, alphaS=0, alphaL=0, vxI=0, initConv=1, ard=0, eta=0, dataPrecision='double', logFile='Log_pFN_NMF.log'):
@@ -743,7 +758,6 @@ def pFN_SR_NMF_torch(Data, gFN, gNb, maxIter=1000, minIter=30, meanFitRatio=0.1,
 
     Yuncong Ma, 12/13/2023
     """
-
     # Setup data precision and eps
     torch_float, torch_eps = set_data_precision_torch(dataPrecision)
 
@@ -806,7 +820,9 @@ def pFN_SR_NMF_torch(Data, gFN, gNb, maxIter=1000, minIter=30, meanFitRatio=0.1,
     miv = torch.max(V, dim=0)[0]
     trimInd = V / torch.maximum(torch.tile(miv, (dim_space, 1)), torch_eps) < torch.tensor(5e-2)
     V[trimInd] = 0
-
+    #robust normalization of V
+    #V = robust_normalize_V(V, factor = 1.0/K) # try to keep 1/K non-zero values for each component, updated on 08/03/2024
+    
     # Initialize U
     U = X @ V / torch.tile(torch.sum(V, dim=0), (dim_time, 1))
 
@@ -946,7 +962,7 @@ def pFN_SR_NMF_torch(Data, gFN, gNb, maxIter=1000, minIter=30, meanFitRatio=0.1,
     return U, V
 
 
-def gFN_SR_NMF_torch(Data, K, gNb, maxIter=1000, minIter=200, error=1e-8, normW=1,
+def gFN_SR_NMF_torch(Data, K, gNb, init='random', maxIter=1000, minIter=200, error=1e-8, normW=1,
                      Alpha=2, Beta=30, alphaS=0, alphaL=0, vxI=0, ard=0, eta=0, nRepeat=5, dataPrecision='double', logFile='Log_gFN_NMF.log'):
     """
     Compute group-level FNs using NMF method
@@ -954,6 +970,10 @@ def gFN_SR_NMF_torch(Data, K, gNb, maxIter=1000, minIter=200, error=1e-8, normW=
     :param Data: 2D matrix [dim_time, dim_space], numpy.ndarray or torch.Tensor, recommend to normalize each fMRI scan before concatenate them along the time dimension
     :param K: number of FNs
     :param gNb: graph neighborhood, a 2D matrix [N, 2] storing rows and columns of non-zero elements
+    :param init: 'nndsvda': NNDSVD with zeros filled with the average of X (better when sparsity is not desired)  #updated on 08/03/2024
+                 'random': non-negative random matrices, scaled with: sqrt(X.mean() / n_components)
+                 'nndsvd': Nonnegative Double Singular Value Decomposition (NNDSVD) initialization (better for sparseness)
+                 'nndsvdar' NNDSVD with zeros filled with small random values (generally faster, less accurate alternative to NNDSVDa for when sparsity is not desired)
     :param maxIter: maximum iteration number for multiplicative update
     :param minIter: minimum iteration in case fast convergence
     :param error: difference of cost function for convergence
@@ -1018,6 +1038,25 @@ def gFN_SR_NMF_torch(Data, K, gNb, maxIter=1000, minIter=200, error=1e-8, normW=
     # Construct the spatial affinity graph
     L, W, D = construct_Laplacian_gNb_torch(gNb, dim_space, vxI, X, alphaL, normW, dataPrecision)
 
+    '''
+    #add initialization parameter on 08/03/2024
+    from sklearn.decomposition import NMF   # for sklearn based NMF initialization
+    model = NMF(n_components=K, init=init, max_iter=1, solver='mu')
+    model._check_params(X.numpy())
+    U = None
+    V = None
+    U, V = model._check_w_h(X.numpy(), U, V,True)
+    U = torch.tensor(U)
+    V = torch.tensor(V).T
+    '''
+    if init != 'random':
+        # to use sklearn NMF  on Aug 07, 2024
+        from sklearn.decomposition import NMF
+        model = NMF(n_components=K, init=init, max_iter=20000) #, random_state=0)
+        W = model.fit_transform(X.cpu().numpy())
+        H = model.components_
+        return torch.tensor(np.transpose(H))
+
     flag_Repeat = 0
     for repeat in range(1, 1 + nRepeat):
         flag_Repeat = 0
@@ -1027,9 +1066,12 @@ def gFN_SR_NMF_torch(Data, K, gNb, maxIter=1000, minIter=200, error=1e-8, normW=
         mean_X = torch.divide(torch.sum(X), torch.tensor(dim_time*dim_space))
         U = (torch.rand((dim_time, K), dtype=torch_float) + 1) * (torch.sqrt(torch.div(mean_X, K)))
         V = (torch.rand((dim_space, K), dtype=torch_float) + 1) * (torch.sqrt(torch.div(mean_X, K)))
-
+                
         # Normalize data
         U, V = normalize_u_v_torch(U, V, 1, 1, dataPrecision)
+
+        #robust normalization of V
+        #V = robust_normalize_V(V, factor = 1.0/K) # try to keep 1/K non-zero values for each component, updated on 08/03/2024
 
         if ard > 0:
             ard = 1
@@ -1157,7 +1199,6 @@ def gFN_fusion_NCut_torch(gFN_BS, K, NCut_MaxTrial=100, dataPrecision='double', 
 
     Yuncong Ma, 10/2/2023
     """
-
     # setup log file
     if isinstance(logFile, str):
         logFile = open(logFile, 'a')
@@ -1293,7 +1334,6 @@ def gFN_fusion_NCut_torch(gFN_BS, K, NCut_MaxTrial=100, dataPrecision='double', 
 
     return gFN
 
-
 def gFN_SR_NMF_boostrapping_cluster(dir_pnet_result: str, jobID=1):
     """
     Run the NMF for bootstraping in cluster computation
@@ -1328,6 +1368,7 @@ def gFN_SR_NMF_boostrapping_cluster(dir_pnet_result: str, jobID=1):
 
     # Extract parameters
     K = setting['FN_Computation']['K']
+    init = setting['FN_Computation']['Group_FN']['BootStrap']['init']
     nTPoints = setting['FN_Computation']['Group_FN']['BootStrap']['nTPoints'] 
     maxIter = setting['FN_Computation']['Group_FN']['maxIter']
     minIter = setting['FN_Computation']['Group_FN']['minIter']
@@ -1374,7 +1415,7 @@ def gFN_SR_NMF_boostrapping_cluster(dir_pnet_result: str, jobID=1):
     gNb = load_matlab_single_array(os.path.join(dir_pnet_FNC, 'gNb.mat'))
 
     # perform NMF
-    FN_BS = gFN_SR_NMF_torch(Data, K, gNb, maxIter=maxIter_gFN, minIter=minIter_gFN, error=error, normW=normW,
+    FN_BS = gFN_SR_NMF_torch(Data, K, gNb, maxIter=maxIter_gFN, init=init, minIter=minIter_gFN, error=error, normW=normW,
                                     Alpha=Alpha, Beta=Beta, alphaS=alphaS, alphaL=alphaL, vxI=vxI, ard=ard, eta=eta,
                                     nRepeat=nRepeat, dataPrecision=dataPrecision, logFile=None)
     # save results
@@ -1439,9 +1480,7 @@ def fuse_FN_cluster(dir_pnet_result: str):
               file_output=os.path.join(dir_pnet_gFN, 'FN.mat'),
               file_brain_template = Brain_Template,
               dataFormat=dataFormat)
-    
     print('Finished at ' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())), flush=True)
-
 
 def pFN_SR_NMF_cluster(dir_pnet_result: str, jobID=1):
     """
