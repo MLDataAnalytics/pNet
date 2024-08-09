@@ -7,6 +7,12 @@ pNet is a Python package for computing personalized, sparse, non-negative large-
 
 ## Getting started
 Follow the Installation Instructions to install pNet, and then check out the Tutorials and [Examples]( https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/examples) to learn how to get up and running! 
+
+### Run with a docker image
+```
+docker pull mldataanalytics/fmripnet:latest
+docker run mldataanalytics/fmripnet -h
+```
 ### Download and install pNet
 #### 1.	Download pNet 
 ``` git clone https://github.com/MLDataAnalytics/pNet ```
