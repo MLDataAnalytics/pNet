@@ -6,7 +6,7 @@ pNet is a Python package for computing personalized, sparse, non-negative large-
 
 
 ## Getting started
-Follow the Installation Instructions to install pNet, and then check out the Tutorials and [Examples](https://github.com/MLDataAnalytics/pNet/tree/main/Examples) to learn how to get up and running! 
+Follow the Installation Instructions to install pNet, and then check out the Tutorials and [Examples]( https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/examples) to learn how to get up and running! 
 ### Download and install pNet
 #### 1.	Download pNet 
 ``` git clone https://github.com/MLDataAnalytics/pNet ```
@@ -22,8 +22,24 @@ conda activate pnet
 pip install .
 # or pip install fmripnet
 ```
+### Script usages
+#### 1. Prepare data
+```
+1) a number of preprocessed fMRI scans that have been spatially aligned to a template space,
+2) a mask image for excluding voxels/vertices of uninterest,
+3) a brain template image/surface for visualization
+4) a script can be found in cli folder for preparing the brain template data
+```
+#### 2. Run the computation (examples can be found in examples folder)
+```
+5) a script (fmripnet.py) can be found in cli folder  for running the computation, supplied with a configuration file (*.toml) for setting the input and output information
+   run "python fmripnet.py -h " to get help information
+   run "python fmripnet.py -c a_config.toml" to start the computation
+   run "python fmripnet.py -c a_config.toml --hpc qsub" to start the computation on a HPC cluster with qsub
+```
 
-### Example usages
+
+### Code examples and usages
 #### 1.	Prepare data
 ```
 1) a number of preprocessed fMRI scans that have been spatially aligned to a template space,
