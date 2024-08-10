@@ -15,3 +15,10 @@ dependencies:
   - scikit-learn
   - scipy
   - vtk>=9.2=*osmesa*
+  - pip:
+    - ggplot
+    - matplotlib
+    - plotnine
+    - statsmodels
+    - surfplot
+    - tomli
