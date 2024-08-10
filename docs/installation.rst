@@ -10,9 +10,10 @@ Installation
 
 ``pNet`` is accessbile via ``docker``:
 
-   .. code-block:: bash
+.. code-block:: bash
         
         docker pull mldataanalytics/fmripnet:latest
+
 or:
 
 .. code-block:: bash
