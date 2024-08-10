@@ -21,7 +21,10 @@ sphinx:
 
 # Optionally build your docs in additional formats such as PDF
 formats:
-   - pdf
+   - all
+
+conda:
+  environment: environment_pnet.yml
 
 python:
    install: 
