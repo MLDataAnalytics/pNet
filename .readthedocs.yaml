@@ -27,5 +27,7 @@ conda:
   environment: environment_pnet.yml
 
 python:
-   install: 
+   install:
+    - method: pip
     - requirements: docs/requirements.txt
+    - requirements: ./requirements.txt
