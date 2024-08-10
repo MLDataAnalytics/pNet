@@ -15,3 +15,15 @@ dependencies:
   - scikit-learn
   - scipy
   - vtk>=9.2=*osmesa*
+  - pip:
+    - ggplot
+    - matplotlib
+    - plotnine
+    - statsmodels
+    - surfplot
+    - tomli
+    - sphinx>=7.0
+    - sphinx_rtd_theme
+    - sphinx-gallery
+    - sphinx-gallery
+    - sphinx_argparse
