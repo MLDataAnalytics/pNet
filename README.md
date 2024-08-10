@@ -21,7 +21,7 @@ docker run mldataanalytics/fmripnet -h
 ```
 ### Download and install pNet
 #### 1.	Download pNet 
-``` git clone https://github.com/MLDataAnalytics/pNet ```
+``` git clone https://github.com/MLDataAnalytics/pNet.git ```
 
 #### 2.	Create a new conda environment for pNet
 ``` 
