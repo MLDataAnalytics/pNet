@@ -89,7 +89,7 @@ sampleSize = 100 # The number should be no larger than the number of available f
 # Setup number of runs for bootstraps
 nBS = 50         # A larger number of run can improve the computational robustness but also increase the computational cost. recommended: >=10
 # Setup number of time points for computing group FNs with bootstraps
-nTPoints = 200   # The number should be no larger than the number of available time points of the fMRI scans. A larger number of samples can improve the computational robustness but also increase the computational cost.  If not set, all available time points will be used if smaller than 9999.
+nTPoints = 200   # The number should be no larger than the number of available time points of the fMRI scans. A larger number of samples can improve the computational robustness but also increase the computational cost.  If not set or larger than the number of available time points (assuming smaller than 9999), all availabe time points will be used.
 
 # Run pnet workflow
 pnet.workflow_simple(
