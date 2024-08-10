@@ -1,7 +1,6 @@
-myst_parser
-sphinx
+sphinx>=7.0
 sphinx_rtd_theme
 sphinx-gallery
 sphinx-gallery
 sphinx_argparse
-
+myst_parser
