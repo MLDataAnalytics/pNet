@@ -11,6 +11,12 @@ Follow the Installation Instructions to install pNet, and then check out the Tut
 ### Run with a docker image
 ```
 docker pull mldataanalytics/fmripnet:latest
+```
+or
+```
+docker pull ghcr.io/mldataanalytics/fmripnet:latest
+```
+```
 docker run mldataanalytics/fmripnet -h
 ```
 ### Download and install pNet
