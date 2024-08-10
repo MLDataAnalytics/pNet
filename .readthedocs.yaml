@@ -21,12 +21,12 @@ conda:
   
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
-   configuration: docs/conf.py
+  configuration: docs/conf.py
 
 # Optionally build your docs in additional formats such as PDF
 formats:
-   - pdf
+  - pdf
 
-python:
-   install: 
-     - requirements: docs/requirements.txt
+#python:
+#   install: 
+#     - requirements: docs/requirements.txt
