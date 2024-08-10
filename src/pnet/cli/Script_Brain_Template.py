@@ -16,7 +16,8 @@ file_maskR = os.path.join(dir_template, 'Gordon/Gordon2016Surface_parcellation_d
 file_surfL_inflated = os.path.join(dir_template, '32k_ConteAtlas_v2', 'Conte69.L.very_inflated.32k_fs_LR.surf.gii')
 file_surfR_inflated = os.path.join(dir_template, '32k_ConteAtlas_v2', 'Conte69.L.very_inflated.32k_fs_LR.surf.gii')
 #
-pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'HCP_Surface'),
+if __name__ == '__main__':
+    pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'HCP_Surface'),
                           dataType='Surface', templateFormat='HCP',
                           file_surfL=file_surfL, file_surfR=file_surfR,
                           file_maskL=file_maskL, file_maskR=file_maskR,
@@ -30,7 +31,8 @@ pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'HCP_Surface'),
 pnet.setup_cifti_volume(os.path.join(pnet.dir_example, 'HCP_Surface-Volume/Data/100206/rfMRI_REST1_LR_Atlas_MSMAll_hp2000_clean.dtseries.nii'),
                         os.path.join(pnet.dir_brain_template, 'HCP_Surface_Volume/CIFTI_Volume.nii.gz'))
 # Use shape files to generate the surface part and combine the previously generated volume parts
-pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'HCP_Surface_Volume'),
+if __name__ == '__main__':
+    pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'HCP_Surface_Volume'),
                           dataType='Surface-Volume', templateFormat='HCP',
                           file_surfL=file_surfL, file_surfR=file_surfR,
                           file_maskL=file_maskL, file_maskR=file_maskR,
@@ -41,7 +43,8 @@ pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'HCP_Surface_Vol
                           )
 
 # =============== HCP Subcortex Volume =============== #
-pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'HCP_Volume'),
+if __name__ == '__main__':
+    pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'HCP_Volume'),
                           dataType='Volume', templateFormat='HCP',
                           maskValue=1,
                           file_mask_vol=os.path.join(pnet.dir_brain_template, 'HCP_Surface_Volume/CIFTI_Volume.nii.gz'),
@@ -52,7 +55,8 @@ pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'HCP_Volume'),
 dir_template = os.path.join(pnet.dir_brain_template, 'MNI_Volume')
 file_mask_vol = os.path.join(dir_template, 'Brain_Mask.mat')
 file_overlayImage = os.path.join(dir_template, 'T1.nii.gz')
-pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'MNI_Volume'),
+if __name__ == '__main__':
+    pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'MNI_Volume'),
                           dataType='Volume', templateFormat='3D Matrix',
                           file_mask_vol=file_mask_vol,
                           maskValue=1,
@@ -67,8 +71,8 @@ file_maskL = os.path.join(dir_template, 'mask_files/lh.Mask_SNR.label')
 file_maskR = os.path.join(dir_template, 'mask_files/rh.Mask_SNR.label')
 file_surfL_inflated = os.path.join(dir_template, 'fsaverage5/surf/lh.inflated')
 file_surfR_inflated = os.path.join(dir_template, 'fsaverage5/surf/rh.inflated')
-#
-pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'FreeSurfer_fsaverage5'),
+if __name__ == '__main__':
+    pnet.setup_brain_template(os.path.join(pnet.dir_brain_template, 'FreeSurfer_fsaverage5'),
                           dataType='Surface', templateFormat='FreeSurfer',
                           file_surfL=file_surfL, file_surfR=file_surfR,
                           file_maskL=file_maskL, file_maskR=file_maskR,

@@ -7,4 +7,5 @@ sys.path.append(parent_directory)
 import pnet
 
 # This is to run a step-by-step workflow setup in terminal
-pnet.workflow_guide()
+if __name__ == '__main__':
+    pnet.workflow_guide()
