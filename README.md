@@ -7,6 +7,18 @@ pNet is a Python package for computing personalized, sparse, non-negative large-
 
 ## Getting started
 Follow the Installation Instructions to install pNet, and then check out the Tutorials and [Examples]( https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/examples) to learn how to get up and running! 
+
+### Run with a docker image
+```
+docker pull mldataanalytics/fmripnet:latest
+```
+or
+```
+docker pull ghcr.io/mldataanalytics/fmripnet:latest
+```
+```
+docker run mldataanalytics/fmripnet -h
+```
 ### Download and install pNet
 #### 1.	Download pNet 
 ``` git clone https://github.com/MLDataAnalytics/pNet ```
@@ -77,7 +89,7 @@ sampleSize = 100 # The number should be no larger than the number of available f
 # Setup number of runs for bootstraps
 nBS = 50         # A larger number of run can improve the computational robustness but also increase the computational cost. recommended: >=10
 # Setup number of time points for computing group FNs with bootstraps
-nTPoints = 200   # The number should be no larger than the number of available time points of the fMRI scans. A larger number of samples can improve the computational robustness but also increase the computational cost.  If not set, all available time points will be used if smaller than 9999.
+nTPoints = 200   # The number should be no larger than the number of available time points of the fMRI scans. A larger number of samples can improve the computational robustness but also increase the computational cost.  If not set or larger than the number of available time points (assuming smaller than 9999), all availabe time points will be used.
 
 # Run pnet workflow
 pnet.workflow_simple(
