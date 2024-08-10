@@ -12,14 +12,6 @@ Workflow.Workflow\_Func module
    :undoc-members:
    :show-inheritance:
 
-Workflow.Workflow\_guide module
--------------------------------
-
-.. automodule:: Workflow.Workflow_guide
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Module contents
 ---------------
 
