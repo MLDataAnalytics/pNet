@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'fmripnet'
+project = 'pNet'
 copyright = '2024, Yong Fan'
 author = 'Yong Fan'
 
