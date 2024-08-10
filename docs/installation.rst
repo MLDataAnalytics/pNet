@@ -29,7 +29,7 @@ Alternatively, you can install the most up-to-date version of from GitHub:
 
 .. code-block:: bash
 
-	git clone https://github.com/MLDataAnalytics/pNet
+	git clone https://github.com/MLDataAnalytics/pNet.git
 	cd pNet
         conda env create --name fmripnet -f environment_pnet.yml
 	pip install . 
