@@ -45,7 +45,7 @@ to learn how to get up and running!
 
 ::
 
-   conda activate pnet
+   conda activate fmripnet
    pip install .
    # or pip install fmripnet
 
