@@ -40,7 +40,7 @@ def main(config_file='config.txt', HPC=None):
     pnet_env = config['hpc_settings']['pnet_env']
     hpc_submit = config['hpc_settings']['submit']
     hpc_computation_resource = config['hpc_settings']['computation_resource']
-    print(f"computation resource: {hpc_computation_resource}")
+    #print(f"computation resource: {hpc_computation_resource}")
 
     print(f"dataType: {dataType}")
     print(f"dataFormat: {dataFormat}")
