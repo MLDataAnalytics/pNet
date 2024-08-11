@@ -47,8 +47,8 @@ def brainmap_colorfunction(brain_map: np.ndarray,
             threshold = 99.5
         threshold_value = np.percentile(brain_map, threshold, interpolation='midpoint')
         threshold_value = np.round(threshold_value)
-        if threshold_value == 0:
-            threshold_value = 1.0
+        if threshold_value <= 3.0: #== 0:  #updated on Aug 11, 2024
+            threshold_value = 3.0 #1.0  #updated on Aug 11, 2024
         color_range = np.array((threshold_value/2, threshold_value))
         if colorbar_range_round > 0:
             color_range = np.round(color_range/colorbar_range_round)*colorbar_range_round
