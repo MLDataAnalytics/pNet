@@ -32,7 +32,7 @@ conda env create --name fmripnet -f environment_pnet.yml
 ```
 #### 3.	Install pNet
 ```
-conda activate pnet
+conda activate fmripnet
 pip install .
 # or pip install fmripnet
 ```
