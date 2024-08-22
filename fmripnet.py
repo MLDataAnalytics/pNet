@@ -1,6 +1,6 @@
 # load pnet toolbox
 import pnet
-
+import sys
 import argparse
 
 import tomli
@@ -96,15 +96,19 @@ def main(config_file='config.txt', HPC=None):
     else:
        print(f"Error: {HPC} is not supported yet!")
 
+class NewParser(argparse.ArgumentParser):
+    def error(self, message):
+        sys.stderr.write('error: %s\n' % message)
+        self.print_help()
+        sys.exit(1)
 if __name__ == "__main__":
     #Create the parser
-    parser = argparse.ArgumentParser(description="pNet: a toolbox for computing personalized functional networks from preprocessed functional magnetic resonance imaging (fMRI) data")
+    parser = NewParser(description="pNet: a toolbox for computing personalized functional networks from preprocessed functional magnetic resonance imaging (fMRI) data")
     # Add arguments
-    parser.add_argument("-c", "--config", type=str, help="A configuration file for setting parameters", required=True)
+    parser.add_argument("-c", "--config", type=str, help="A configuration file is required for setting parameters", required=True)
     parser.add_argument("--hpc", type=str, default=None, help="HPC computing: None (default:not available) or qsub", required=False)
     # Parse the arguments
     args = parser.parse_args()
     config_file = args.config
     hpc = args.hpc
     main(config_file, hpc)
-
