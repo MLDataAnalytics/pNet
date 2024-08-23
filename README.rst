@@ -35,6 +35,7 @@ brain <https://pubmed.ncbi.nlm.nih.gov/36731813/>`__.
    https://github.com/user-attachments/assets/b45d02a1-2c82-43b5-b7d5-42fc38a7b298
    :alt: image
 
+   image
 
 Getting started
 ---------------
@@ -94,22 +95,124 @@ Script usages
 1. Prepare data
 ^^^^^^^^^^^^^^^
 
+-  a number of preprocessed fMRI scans that have been spatially aligned
+   to a template space,
+-  a mask image for excluding voxels/vertices of uninterest,
+-  a brain template image/surface for visualization.
+-  a script can be found in `cli
+   folder <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli>`__
+   for preparing the brain template data and `precomputed
+   templates <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template>`__
+   are avaiable for data preprocessed with HCP pipelines.
+
+2. Example files of scans and configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+-  An example file with a list of preprocessed fMRI scans:
+
 ::
 
-   1) a number of preprocessed fMRI scans that have been spatially aligned to a template space,
-   2) a mask image for excluding voxels/vertices of uninterest,
-   3) a brain template image/surface for visualization
-   4) a script can be found in cli folder for preparing the brain template data
+   /cbica/projects/xxx/rfMRI_REST1_LR/rfMRI_REST1_LR_Atlas_MSMAll_hp2000_clean.dtseries.nii
+   ...
+   /cbica/projects/xxx/rfMRI_REST1_LR/rfMRI_REST1_LR_Atlas_MSMAll_hp2000_clean.dts
+   eries.nii
 
-2. Run the computation (examples can be found in examples folder)
+-  An example configration file:
+
+::
+
+   # This is a configuration file for computing personalized functional networks (FNs) given a set of preprocessed fMRI data
+   ## input:
+   #   1. Provide a txt file with a list of preprocesed fMRI scans, one on each line, as Scan_List.txt
+   #   2. Specifiy a brain template file, provide by pnet or prepared with data provided
+   #   3. Specify the number of FNs
+   ## output:
+   #   1. Specify the result folder directory in dir_pnet_result
+
+   [necessary_settings]
+   ## Input:
+   # a txt file with a list of preprocessed fMRI scan file, one on each line
+   file_scans = "/cbica/home/fanyo/fmripnet/examples/HCP1200_10Surfs.txt"
+   # a brain template file. A HCP surface based template is set here, prepared by pnet
+   file_Brain_Template = "/cbica/home/fanyo/.conda/envs/fmripnet/lib/python3.8/site-packages/pnet/Brain_Template/HCP_Surface/Brain_Te
+   mplate.json.zip"
+   # the number of FNs to be computed, should be a positive integer number
+   K = 2
+   ## Output: setup the output folder
+   dir_pnet_result = "/cbica/home/fanyo/comp_space/pNet/examples/FN2_Surface_hpc"
+
+   ## specify the method for computing personalized FNs: SR-NMF or GIG-ICA
+   # for GIG-ICA group level FNs (file_gFN) have to be provided
+   # and gFN_settings will be ignored
+   method="SR-NMF"
+
+   ## date type and format information
+   # data type is surface
+   dataType = "Surface"
+   # data format is HCP surface
+   dataFormat = "HCP Surface (*.cifti, *.mat)"
+
+   [pFN_settings]
+   ## for computing personalized FNs based on given fMRI scans/cbica/home/fanyo/fmripnet/examples
+   # Specify group level FNs if avialable. If not, the group level FNs will be computed first
+   file_gFN = "None"
+
+   [gFN_settings]
+   ## for computing FNs at a group level by boostrapping the input data
+   # Setup number of scans loaded for each bootstrap run for estimating gFNs
+   # a larger number is preferred for robustness, but should be no larger than the avaiable scans
+   sampleSize = 10  # typical value: 100
+   # Setup number of runs for bootstraps
+   # a larger number is preferred for robustness, but with increased computational cost
+   nBS = 5        #typical value: 50
+   # a number of time points for computing group FNs with bootstraps
+   # this is for reducing the computational cost by using a partion of all avaiable time points of each fMRI scan
+   # for short fMRI scans all available time points should be used for robustness
+   nTPoints = 300   # all avaiable time points will be used if seting a value larger than the available number of time points
+
+   ####################################################################################
+   # the following is ignored if no HPC computation (with sge or slurm) will be used  #
+   ####################################################################################
+   [hpc_settings]
+   [hpc_settings.pnet_env]
+   # specify pnet installation information
+   dir_pnet="/cbica/home/fanyo/.conda/envs/fmripnet/lib/python3.8/site-packages/pnet"
+   dir_env="/cbica/home/fanyo/.conda/envs/fmripnet"
+   dir_python="/cbica/home/fanyo/.conda/envs/fmripnet/bin/python"
+
+   # specify pnet
+   [hpc_settings.submit]
+   # Setup qsub commands
+   submit_command = "sbatch --parsable --time=0:50:00" # "qsub -terse -j y"
+   thread_command = "--ntasks-per-node=" #-pe threaded "
+   memory_command = "--mem="                   #"-l h_vmem="
+   log_command = "--output="  #"-o "
+
+   [hpc_settings.computation_resource]
+   # Computation resource request
+   memory_bootstrap= "100G"
+   thread_bootstrap= 2
+   memory_fusion= "10G"
+   thread_fusion= 4
+   memory_pFN= "10G"
+   thread_pFN= 1
+   memory_qc= "10G"
+   thread_qc= 1
+   memory_visualization= "20G"
+   thread_visualization= 1
+
+3. Run the computation (examples can be found in examples folder)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+-  a script (fmripnet.py) can be found in cli folder for running the
+   computation, supplied with a configuration file (\*.toml) for setting
+   the input and output information
+
 ::
 
-   5) a script (fmripnet.py) can be found in cli folder  for running the computation, supplied with a configuration file (*.toml) for setting the input and output information
       run "python fmripnet.py -h " to get help information
-      run "python fmripnet.py -c a_config.toml" to start the computation
-      run "python fmripnet.py -c a_config.toml --hpc qsub" to start the computation on a HPC cluster with qsub
+      run "python fmripnet.py -c a_config.toml" to start the computation without HPC
+      run "python fmripnet.py -c a_config.toml --hpc" to start the computation on a HPC cluster with sge or slurm
 
 Code examples and usages
 ~~~~~~~~~~~~~~~~~~~~~~~~
