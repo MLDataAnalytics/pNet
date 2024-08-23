@@ -950,8 +950,6 @@ def workflow_cluster(dir_pnet_result: str,
 
     if method == 'SR-NMF':
         if file_gFN is not None:
-            print(f"samplingMethod = '{setting['Group_FN']['BootStrap']['init']}'", file=file_script)
-            print(f"sampleSize = {setting['Group_FN']['BootStrap']['sampleSize']}", file=file_script)
             print(f"samplingMethod = '{setting['Group_FN']['BootStrap']['samplingMethod']}'", file=file_script)
             print(f"sampleSize = {setting['Group_FN']['BootStrap']['sampleSize']}", file=file_script)
             print(f"nBS = {setting['Group_FN']['BootStrap']['nBS']}", file=file_script)

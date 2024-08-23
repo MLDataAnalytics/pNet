@@ -40,8 +40,8 @@ def main(config_file='config.txt', HPC=None):
     pnet_env = config['hpc_settings']['pnet_env']
     hpc_submit = config['hpc_settings']['submit']
     hpc_computation_resource = config['hpc_settings']['computation_resource']
-    #print(f"computation resource: {hpc_computation_resource}")
-
+    '''
+    print(f"computation resource: {hpc_computation_resource}")
     print(f"dataType: {dataType}")
     print(f"dataFormat: {dataFormat}")
     print(f"dir_pent_result: {dir_pnet_result}")
@@ -51,25 +51,28 @@ def main(config_file='config.txt', HPC=None):
     print(f"sampleSize: {sampleSize}")
     print(f"nBS: {nBS}")
     print(f"nTPoints: {nTPoints}")
-
-    if HPC is None:
+    '''
+    if HPC is False:
        pnet.workflow(
            dir_pnet_result=dir_pnet_result,
            dataType=dataType,
            dataFormat=dataFormat,
-           file_scan=file_scans,
            file_Brain_Template=file_Brain_Template,
+           file_scan=file_scans,
+           file_subject_ID=None,
+           file_subject_folder=None,
+           file_gFN = file_gFN,
            K=K,
+           Combine_Scan=False,
            method=method,
            init='random', 
            sampleSize=sampleSize,
            nBS=nBS,
            nTPoints=nTPoints,
-           Computation_Mode='CPU_Torch',
-           Combine_Scan=False)
-
-    elif HPC == 'qsub':
-       print(f"HCP={HPC}")
+           Computation_Mode='CPU_Torch'
+           )
+    else:
+       #print(f"HCP={HPC}")
        pnet.workflow_cluster(
            dir_pnet_result=dir_pnet_result,
            dataType=dataType,
@@ -78,23 +81,26 @@ def main(config_file='config.txt', HPC=None):
            file_scan=file_scans,
            file_subject_ID=None,
            file_subject_folder=None,
+           file_gFN=file_gFN,
            K=K,
            Combine_Scan=False,
+           method=method,
+           init='random',
            sampleSize=sampleSize,
            nBS=nBS,
            nTPoints=nTPoints,
+           Computation_Mode='CPU_Torch',
            dir_env=pnet_env['dir_env'],
            dir_python=pnet_env['dir_python'],
            dir_pnet=pnet_env['dir_pnet'],
-           Computation_Mode='CPU_Torch',
            submit_command=hpc_submit['submit_command'],
            thread_command=hpc_submit['thread_command'],
            memory_command=hpc_submit['memory_command'],
            log_command=hpc_submit['log_command'],
            computation_resource=hpc_computation_resource
        )
-    else:
-       print(f"Error: {HPC} is not supported yet!")
+    #else:
+    #   print(f"Error: {HPC} is not supported yet!")
 
 class NewParser(argparse.ArgumentParser):
     def error(self, message):
@@ -106,7 +112,7 @@ if __name__ == "__main__":
     parser = NewParser(description="pNet: a toolbox for computing personalized functional networks from preprocessed functional magnetic resonance imaging (fMRI) data")
     # Add arguments
     parser.add_argument("-c", "--config", type=str, help="A configuration file is required for setting parameters", required=True)
-    parser.add_argument("--hpc", type=str, default=None, help="HPC computing: None (default:not available) or qsub", required=False)
+    parser.add_argument("--hpc", action='store_true', help="HPC computing: if present, computational jobs will be submitted with slurm or sge, depending on the configuration", required=False)
     # Parse the arguments
     args = parser.parse_args()
     config_file = args.config
