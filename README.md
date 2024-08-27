@@ -4,7 +4,7 @@ pNet is a Python package of an [algorithm](https://pubmed.ncbi.nlm.nih.gov/28483
 
 The [algorithm](https://pubmed.ncbi.nlm.nih.gov/28483721/) has been successfully applied to studies of [individual variation in functional topography of association networks in youth](https://pubmed.ncbi.nlm.nih.gov/32078800/), [sex differences in the functional topography of association networks in youth](https://pubmed.ncbi.nlm.nih.gov/35939696/), [dissociable multi-scale patterns of development in personalized brain networks](https://pubmed.ncbi.nlm.nih.gov/35551181/), [functional network topography of psychopathology in youth](https://pubmed.ncbi.nlm.nih.gov/35927072/), [personalized functional brain network topography in youth cognition](https://pubmed.ncbi.nlm.nih.gov/38110396/), and [multiscale functional connectivity patterns of the aging brain](https://pubmed.ncbi.nlm.nih.gov/36731813/).
 
-![image](https://github.com/user-attachments/assets/b45d02a1-2c82-43b5-b7d5-42fc38a7b298)
+![pnet_image](https://github.com/user-attachments/assets/25809dc1-7757-48d0-8d69-c6a23164941b)
 
 
 ## Getting started
