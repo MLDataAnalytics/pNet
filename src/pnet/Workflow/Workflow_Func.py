@@ -949,13 +949,14 @@ def workflow_cluster(dir_pnet_result: str,
             setting = GIG_ICA.update_model_parameter(dir_pnet_result, FN_model_parameter=FN_model_parameter)
 
     if method == 'SR-NMF':
+        '''
         if file_gFN is not None:
             print(f"samplingMethod = '{setting['Group_FN']['BootStrap']['samplingMethod']}'", file=file_script)
             print(f"sampleSize = {setting['Group_FN']['BootStrap']['sampleSize']}", file=file_script)
             print(f"nBS = {setting['Group_FN']['BootStrap']['nBS']}", file=file_script)
             print(f"nTPoints = {setting['Group_FN']['BootStrap']['nTPoints']}", file=file_script)
-            print(f"init = {setting['Group_FN']['BootStrap']['init']}", file=file_script)
-            
+            print(f"init = '{setting['Group_FN']['BootStrap']['init']}'", file=file_script)
+        '''  #removed on Aug 27, 2024
         print(f"maxIter = {(setting['Group_FN']['maxIter'], setting['Personalized_FN']['maxIter'])}", file=file_script)
         print(f"minIter = {(setting['Group_FN']['minIter'], setting['Personalized_FN']['minIter'])}", file=file_script)
         print(f"meanFitRatio = {setting['Personalized_FN']['meanFitRatio']}", file=file_script)
