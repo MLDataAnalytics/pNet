@@ -22,7 +22,7 @@ docker pull ghcr.io/mldataanalytics/fmripnet:latest
 docker run mldataanalytics/fmripnet -h
 ```
 
-### Run with a singularity image
+### Run with a singularity ([SingularityCE](https://cloud.sylabs.io/library/yongfan/collection/fmripnet)) image 
 ```
 singularity pull library://yongfan/collection/fmripnet
 ```
