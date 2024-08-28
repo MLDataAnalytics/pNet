@@ -62,6 +62,20 @@ or
 
    docker run mldataanalytics/fmripnet -h
 
+
+Run with a singularity image
+~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+   singularity pull library://yongfan/collection/fmripnet
+
+
+::
+
+  singularity run fmripnet_latest.sif -h
+
+
 Download and install pNet
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
