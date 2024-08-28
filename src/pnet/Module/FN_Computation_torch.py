@@ -506,7 +506,7 @@ def run_FN_computation_torch_cluster(dir_pnet_result: str):
 
         else:  # use precomputed gFNs
             file_gFN = setting['FN_Computation']['Group_FN']['file_gFN']
-            gFN, _, _ = load_matlab_single_array(file_gFN)
+            gFN = load_matlab_single_array(file_gFN)
             if dataType == 'Volume':
                 Brain_Mask = load_brain_template(os.path.join(dir_pnet_dataInput, 'Brain_Template.json.zip'))['Brain_Mask']
                 gFN = reshape_FN(gFN, dataType=dataType, Brain_Mask=Brain_Mask)
