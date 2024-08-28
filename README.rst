@@ -63,7 +63,7 @@ or
    docker run mldataanalytics/fmripnet -h
 
 
-Run with a singularity (`singularityCE <https://cloud.sylabs.io/library/yongfan/collection/fmripnet>`__) image
+Run with a singularity (`SingularityCE <https://cloud.sylabs.io/library/yongfan/collection/fmripnet>`__) image
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
