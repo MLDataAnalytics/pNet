@@ -68,7 +68,7 @@ Run with a singularity (`SingularityCE <https://cloud.sylabs.io/library/yongfan/
 
 ::
 
-   singularity pull library://yongfan/collection/fmripnet
+   singularity pull --arch amd64 library://yongfan/collection/fmripnet:latest
 
 
 ::
