@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages, find_namespace_packages
 
-with open("README.md", "r") as fh:
+with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setup(
@@ -8,7 +8,7 @@ setup(
     version="1.0.1c",
     description="pNet: a python package for computing personalized fucntional networks",
     long_description=long_description,
-    long_description_content_type="text/markdown",
+    long_description_content_type="text/x-rst",
     url="https://github.com/MLDataAnalytics/pNet",
     classifiers=[
         "Programming Language :: Python :: 3",
