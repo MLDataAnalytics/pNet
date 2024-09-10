@@ -1,15 +1,13 @@
 pNet
 ====
 
-pNet is a Python package of an `algorithm <https://pubmed.ncbi.nlm.nih.gov/28483721/>`__ for computing personalized, sparse, non-negative large-scale functional networks from functional magnetic resonance imaging (fMRI) data, facilitating effective characterization of individual variation in `functional topography <https://pubmed.ncbi.nlm.nih.gov/32078800/>`__. The personalized functional networks are **comparable across subjects** while maintaining **subject specific variation**, reflected by their **improved functional coherence** compared with their group-level counterparts. The computation of personalized functional networks is accompanied by `quality control <https://pubmed.ncbi.nlm.nih.gov/36706636/>`__, with visualization and quantification of their spatial correspondence and functional coherence in reference to their group-level counterparts.
+pNet is a Python package of an `algorithm <https://pubmed.ncbi.nlm.nih.gov/28483721>`__ for computing personalized, sparse, non-negative large-scale functional networks from functional magnetic resonance imaging (fMRI) data, facilitating effective characterization of individual variation in `functional topography <https://pubmed.ncbi.nlm.nih.gov/32078800>`__. The personalized functional networks are **comparable across subjects** while maintaining **subject specific variation**, reflected by their **improved functional coherence** compared with their group-level counterparts. The computation of personalized functional networks is accompanied by `quality control <https://pubmed.ncbi.nlm.nih.gov/36706636>`__, with visualization and quantification of their spatial correspondence and functional coherence in reference to their group-level counterparts.
 
-The `algorithm <https://pubmed.ncbi.nlm.nih.gov/28483721/>`__ has been successfully applied to studies of `individual variation in functional topography of association networks in youth <https://pubmed.ncbi.nlm.nih.gov/32078800/>`__, `sex differences in the functional topography of association networks in youth <https://pubmed.ncbi.nlm.nih.gov/35939696/>`__, `dissociable multi-scale patterns of development in personalized brain networks <https://pubmed.ncbi.nlm.nih.gov/35551181/>`__, `functional network topography of psychopathology in youth <https://pubmed.ncbi.nlm.nih.gov/35927072/>`__, `personalized functional brain network topography in youth cognition <https://pubmed.ncbi.nlm.nih.gov/38110396/>`__, and `multiscale functional connectivity patterns of the aging brain <https://pubmed.ncbi.nlm.nih.gov/36731813/>`__.
+The `algorithm <https://pubmed.ncbi.nlm.nih.gov/28483721>`__ has been successfully applied to studies of `individual variation in functional topography of association networks in youth <https://pubmed.ncbi.nlm.nih.gov/32078800>`__, `sex differences in the functional topography of association networks in youth <https://pubmed.ncbi.nlm.nih.gov/35939696>`__, `functional network topography of psychopathology in youth <https://pubmed.ncbi.nlm.nih.gov/35927072>`__, `dissociable multi-scale patterns of development in personalized brain networks <https://pubmed.ncbi.nlm.nih.gov/35551181>`__, `multiscale functional connectivity patterns of the aging brain <https://pubmed.ncbi.nlm.nih.gov/36731813>`__, and `personalized functional brain network topography in youth cognition <https://pubmed.ncbi.nlm.nih.gov/38110396>`__.
 
 .. figure::
    https://github.com/user-attachments/assets/25809dc1-7757-48d0-8d69-c6a23164941b
    :alt: pnet_image
-
-   pnet_image
 
 Getting started
 ---------------
