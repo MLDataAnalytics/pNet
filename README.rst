@@ -32,10 +32,10 @@ cognition <https://pubmed.ncbi.nlm.nih.gov/38110396/>`__, and
 brain <https://pubmed.ncbi.nlm.nih.gov/36731813/>`__.
 
 .. figure::
-   https://github.com/user-attachments/assets/b45d02a1-2c82-43b5-b7d5-42fc38a7b298
-   :alt: image
+   https://github.com/user-attachments/assets/25809dc1-7757-48d0-8d69-c6a23164941b
+   :alt: pnet_image
 
-   image
+   pnet_image
 
 Getting started
 ---------------
@@ -43,7 +43,9 @@ Getting started
 Follow the Installation Instructions to install pNet, and then check out
 the `APIs <https://pnet.readthedocs.io/en/latest/api.html>`__ and
 `Examples <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/examples>`__
-to learn how to get up and running!
+to learn how to get up and running! For visualization issues that might
+be caused by VTK, please check
+`TrobubleShooting <https://github.com/MLDataAnalytics/pNet?tab=readme-ov-file#troubleshooting>`__.
 
 Run with a docker image
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -62,19 +64,16 @@ or
 
    docker run mldataanalytics/fmripnet -h
 
-
 Run with a singularity (`SingularityCE <https://cloud.sylabs.io/library/yongfan/collection/fmripnet>`__) image
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
    singularity pull --arch amd64 library://yongfan/collection/fmripnet:latest
 
-
 ::
 
-  singularity run fmripnet_latest.sif -h
-
+   singularity run fmripnet_latest.sif -h
 
 Download and install pNet
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -361,6 +360,18 @@ References
    learning <https://pubmed.ncbi.nlm.nih.gov/36706636/>`__. **Med Image
    Anal**. 2023 Apr;85:102756. doi: 10.1016/j.media.2023.102756. Epub
    2023 Jan 21. PMID: 36706636; PMCID: PMC10103143.
+
+Troubleshooting
+---------------
+
+If vtk-osmesa (off-screen MESA) cannot be installed with conda (conda
+install -c conda-forge “vtk>=9.2=\ *osmesa*”), please have a try with
+pip (a solution provided by
+`albertleemon <https://github.com/albertleemon>`__):
+
+::
+
+   pip install --extra-index-url https://wheels.vtk.org vtk-osmesa
 
 Support
 -------
