@@ -1,4 +1,4 @@
-# pNet
+# [pNet](https://github.com/MLDataAnalytics/pNet)
 
 pNet is a Python package of an [algorithm](https://pubmed.ncbi.nlm.nih.gov/28483721) for computing personalized, sparse, non-negative large-scale functional networks from functional magnetic resonance imaging (fMRI) data, facilitating effective characterization of individual variation in [functional topography](https://pubmed.ncbi.nlm.nih.gov/32078800). The personalized functional networks are ***comparable across subjects*** while maintaining ***subject specific variation***, reflected by their ***improved functional coherence*** compared with their group-level counterparts. The computation of personalized functional networks is accompanied by [quality control](https://pubmed.ncbi.nlm.nih.gov/36706636), with visualization and quantification of their spatial correspondence and functional coherence in reference to their group-level counterparts. 
 
@@ -223,12 +223,11 @@ pnet.workflow_simple(
 
 
 ## Troubleshooting
-If vtk-osmesa (off-screen MESA) cannot be installed with conda (conda install -c conda-forge "vtk>=9.2=*osmesa*"), please have a try with pip (a solution provided by [albertleemon](https://github.com/albertleemon)):
+#### If vtk-osmesa (off-screen MESA) cannot be installed with conda (conda install -c conda-forge "vtk>=9.2=*osmesa*"), please have a try with pip (a solution provided by [albertleemon](https://github.com/albertleemon)):
 
 ```
 pip install --extra-index-url https://wheels.vtk.org vtk-osmesa
 ```
-
 
 
 ## Support
