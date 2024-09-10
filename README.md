@@ -8,7 +8,7 @@ The [algorithm](https://pubmed.ncbi.nlm.nih.gov/28483721/) has been successfully
 
 
 ## Getting started
-Follow the Installation Instructions to install pNet, and then check out the [APIs](https://pnet.readthedocs.io/en/latest/api.html) and [Examples]( https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/examples) to learn how to get up and running! For visualization issues that might be caused by VTK, please check [TrobubleShooting](https://github.com/MLDataAnalytics/pNet/edit/main/README.md#troubleshooting).
+Follow the Installation Instructions to install pNet, and then check out the [APIs](https://pnet.readthedocs.io/en/latest/api.html) and [Examples]( https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/examples) to learn how to get up and running! For visualization issues that might be caused by VTK, please check [TrobubleShooting](https://github.com/MLDataAnalytics/pNet?tab=readme-ov-file#troubleshooting).
 
 ### Run with a docker image
 ```
