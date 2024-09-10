@@ -364,6 +364,11 @@ References
 Troubleshooting
 ---------------
 
+vtk-osmesa (off-screen MESA):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
 If vtk-osmesa (off-screen MESA) cannot be installed with conda (conda
 install -c conda-forge “vtk>=9.2=\ *osmesa*”), please have a try with
 pip (a solution provided by
