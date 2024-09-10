@@ -222,12 +222,12 @@ pnet.workflow_simple(
 
 
 ## Troubleshooting
-#### If vtk-osmesa (off-screen MESA) cannot be installed with conda (conda install -c conda-forge "vtk>=9.2=*osmesa*"), please have a try with pip (a solution provided by [albertleemon](https://github.com/albertleemon)):
+### vtk-osmesa (off-screen MESA):
+If vtk-osmesa (off-screen MESA) cannot be installed with conda (conda install -c conda-forge "vtk>=9.2=*osmesa*"), please have a try with pip (a solution provided by [albertleemon](https://github.com/albertleemon)):
 
 ```
 pip install --extra-index-url https://wheels.vtk.org vtk-osmesa
 ```
-
 
 ## Support
 If you encounter problems or bugs with pNet, or have questions or improvement suggestions, please feel free to get in touch via the [Github issues](https://github.com/MLDataAnalytics/pNet/issues).
