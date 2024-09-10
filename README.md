@@ -8,7 +8,7 @@ The [algorithm](https://pubmed.ncbi.nlm.nih.gov/28483721/) has been successfully
 
 
 ## Getting started
-Follow the Installation Instructions to install pNet, and then check out the [APIs](https://pnet.readthedocs.io/en/latest/api.html) and [Examples]( https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/examples) to learn how to get up and running! 
+Follow the Installation Instructions to install pNet, and then check out the [APIs](https://pnet.readthedocs.io/en/latest/api.html) and [Examples]( https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/examples) to learn how to get up and running! For visualization issues that might be caused by VTK, please check [TrobubleShooting](https://github.com/MLDataAnalytics/pNet/edit/main/README.md#troubleshooting).
 
 ### Run with a docker image
 ```
@@ -220,6 +220,14 @@ pnet.workflow_simple(
 * Keller AS, Pines AR, Shanmugan S, Sydnor VJ, Cui Z, Bertolero MA, Barzilay R, Alexander-Bloch AF, Byington N, Chen A, Conan GM, Davatzikos C, Feczko E, Hendrickson TJ, Houghton A, Larsen B, Li H, Miranda-Dominguez O, Roalf DR, Perrone A, Shetty A, Shinohara RT, Fan Y, Fair DA, Satterthwaite TD. [Personalized functional brain network topography is associated with individual differences in youth cognition](https://pubmed.ncbi.nlm.nih.gov/38110396/). ***Nat Commun***. 2023 Dec 18;14(1):8411. doi: 10.1038/s41467-023-44087-0. PMID: 38110396; PMCID: PMC10728159.
 * Zhou Z, Li H, Srinivasan D, Abdulkadir A, Nasrallah IM, Wen J, Doshi J, Erus G, Mamourian E, Bryan NR, Wolk DA, Beason-Held L, Resnick SM, Satterthwaite TD, Davatzikos C, Shou H, Fan Y; ISTAGING Consortium. [Multiscale functional connectivity patterns of the aging brain learned from harmonized rsfMRI data of the multi-cohort iSTAGING study](https://pubmed.ncbi.nlm.nih.gov/36731813/). ***Neuroimage***. 2023 Apr 1;269:119911. doi: 10.1016/j.neuroimage.2023.119911. Epub 2023 Jan 30. PMID: 36731813; PMCID: PMC9992322.
 * Li H, Srinivasan D, Zhuo C, Cui Z, Gur RE, Gur RC, Oathes DJ, Davatzikos C, Satterthwaite TD, Fan Y. [Computing personalized brain functional networks from fMRI using self-supervised deep learning](https://pubmed.ncbi.nlm.nih.gov/36706636/). ***Med Image Anal***. 2023 Apr;85:102756. doi: 10.1016/j.media.2023.102756. Epub 2023 Jan 21. PMID: 36706636; PMCID: PMC10103143.
+
+
+## Troubleshooting
+If vtk-osmesa (off-screen MESA) cannot be installed with conda (conda install -c conda-forge "vtk>=9.2=*osmesa*"), please have a try with pip (a solution provided by [albertleemon](https://github.com/albertleemon)):
+
+```
+pip install --extra-index-url https://wheels.vtk.org vtk-osmesa
+```
 
 
 
