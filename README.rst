@@ -1,4 +1,4 @@
-pNet
+`pNet <https://github.com/MLDataAnalytics/pNet>`__
 ====
 
 pNet is a Python package of an `algorithm <https://pubmed.ncbi.nlm.nih.gov/28483721>`__ for computing personalized, sparse, non-negative large-scale functional networks from functional magnetic resonance imaging (fMRI) data, facilitating effective characterization of individual variation in `functional topography <https://pubmed.ncbi.nlm.nih.gov/32078800>`__. The personalized functional networks are **comparable across subjects** while maintaining **subject specific variation**, reflected by their **improved functional coherence** compared with their group-level counterparts. The computation of personalized functional networks is accompanied by `quality control <https://pubmed.ncbi.nlm.nih.gov/36706636>`__, with visualization and quantification of their spatial correspondence and functional coherence in reference to their group-level counterparts.
