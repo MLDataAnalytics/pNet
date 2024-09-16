@@ -1,0 +1,28 @@
+FN 1 -- VisCent
+FN 2 -- VisPeri
+FN 3 -- SomMotA
+FN 4 -- SomMotB
+FN 5 -- VisCent
+FN 6 -- DorsAttnB
+FN 7 -- SalVentAttnA
+FN 8 -- SalVentAttnB
+FN 9 -- SomMotA
+FN 10 -- LimbicA
+FN 11 -- ContC
+FN 12 -- ContA
+FN 13 -- ContB
+FN 14 -- TempPar
+FN 15 -- DefaultC
+FN 16 -- DefaultA
+FN 17 -- DefaultB
+
+
+Cont – Control/Frontoparietal
+DorsAtten – Dorsal Attention 
+SalVentAtten – Ventral Attention
+SomMot – Somatomotor
+Vis -- Visual
+
+TempPar – Temporal Parietal 
+VisCent – Visual A
+VisPeri – Visual B
