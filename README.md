@@ -53,7 +53,7 @@ pip install .
 * A mask image for excluding voxels/vertices of uninterest,
 * A brain template image/surface for visualization.
 * A script can be found in [cli folder](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli) for preparing the brain template data and [precomputed templates](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template) are avaiable for data preprocessed with HCP pipelines.
-* Precomputed group FNs are provided in [Group_FNs](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs). They can used to guide the computation of personalized FNs.
+* Precomputed group FNs are provided in [Group_FNs](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs). They can be used to guide the computation of personalized FNs.
 
 #### 2. Example files of scans and configuration
 
