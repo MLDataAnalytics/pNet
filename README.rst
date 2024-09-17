@@ -285,6 +285,11 @@ Support
 
 If you encounter problems or bugs with pNet, or have questions or improvement suggestions, please feel free to get in touch via the `Github issues <https://github.com/MLDataAnalytics/pNet/issues>`__.
 
+Acknowledgment
+--------------
+
+This project has been supported in part by NIH grants U24NS130411 and R01EB022573.
+
 Previous versions:
 ------------------
 
