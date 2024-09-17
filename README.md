@@ -49,11 +49,11 @@ pip install .
 ### Script usages
 #### 1. Prepare data
 
-* a number of preprocessed fMRI scans that have been spatially aligned to a template space,
-* a mask image for excluding voxels/vertices of uninterest,
-* a brain template image/surface for visualization.
-* a script can be found in [cli folder](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli) for preparing the brain template data and [precomputed templates](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template) are avaiable for data preprocessed with HCP pipelines.
-
+* A number of preprocessed fMRI scans that have been spatially aligned to a template space,
+* A mask image for excluding voxels/vertices of uninterest,
+* A brain template image/surface for visualization.
+* A script can be found in [cli folder](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli) for preparing the brain template data and [precomputed templates](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template) are avaiable for data preprocessed with HCP pipelines.
+* Precomputed group FNs are provided in [Group_FNs](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs). They can used to guide the computation of personalized FNs.
 
 #### 2. Example files of scans and configuration
 
