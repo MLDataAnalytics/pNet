@@ -1158,6 +1158,8 @@ def bootstrap_scan(dir_output: str, file_scan: str, file_subject_ID: str, file_s
     :return: None
 
     Yuncong Ma, 10/2/2023
+    
+    Scan based sampling added on Dec 13, 20204 
     """
 
     if logFile is not None:
@@ -1167,6 +1169,9 @@ def bootstrap_scan(dir_output: str, file_scan: str, file_subject_ID: str, file_s
 
     # Lists for input
     list_scan = np.array([line.replace('\n', '') for line in open(file_scan, 'r')])
+    scan_ID_unique = np.unique(list_scan)
+    N_Scan = scan_ID_unique.shape[0]
+        
     list_subject_ID = np.array([line.replace('\n', '') for line in open(file_subject_ID, 'r')])
     subject_ID_unique = np.unique(list_subject_ID)
     N_Subject = subject_ID_unique.shape[0]
@@ -1179,12 +1184,9 @@ def bootstrap_scan(dir_output: str, file_scan: str, file_subject_ID: str, file_s
         group_unique = np.unique(list_subject_ID)
 
     # check parameter
-    if sampleSize > N_Subject: # changed on 08/01/2024
-        sampleSize = N_Subject
-        #raise ValueError('The number of randomly selected subjects should be no more than the total number of subjects')
     if samplingMethod == 'Group_Subject' and (list_group_D is None or len(list_group_D) == 0):
         raise ValueError('Group information is absent')
-    if samplingMethod != 'Subject' and samplingMethod != 'Group_Subject':
+    if samplingMethod != 'Subject' and samplingMethod != 'Group_Subject' and samplingMethod != 'Scan':
         raise ValueError('Unknown sampling method for bootstrapping: ' + samplingMethod)
     for i in range(1, nBS+1):
         if not os.path.exists(os.path.join(dir_output, str(i))):
@@ -1193,6 +1195,9 @@ def bootstrap_scan(dir_output: str, file_scan: str, file_subject_ID: str, file_s
 
         # Randomly select subjects
         if samplingMethod == 'Subject':
+            if sampleSize > N_Subject: # changed on 08/01/2024
+                sampleSize = N_Subject
+                #raise ValueError('The number of randomly selected subjects should be no more than the total number of subjects')
             ps = np.sort(np.random.choice(N_Subject, sampleSize, replace=False))
             for j in range(sampleSize):
                 if combineScan == 1:
@@ -1207,6 +1212,12 @@ def bootstrap_scan(dir_output: str, file_scan: str, file_subject_ID: str, file_s
 
         if samplingMethod == 'Group_Subject':
             break
+        
+        if samplingMethod == 'Scan':
+            ps = np.sort(np.random.choice(N_Scan, sampleSize, replace=False))
+            for j in range(sampleSize):
+                # Choose one scan from the selected subject
+                List_BS[j] = list_scan[ps[j]]  # transform to string list           
 
         # Write the Scan_List.txt file
         if logFile is not None:
@@ -1217,7 +1228,7 @@ def bootstrap_scan(dir_output: str, file_scan: str, file_subject_ID: str, file_s
         FID.close()
 
 
-def setup_SR_NMF(dir_pnet_result: str, K=17, Combine_Scan=False, file_gFN=None, init='random', samplingMethod='Subject', sampleSize='Automatic', nBS=50, nTPoints=99999, maxIter=(2000, 500), minIter=200, meanFitRatio=0.1, error=1e-8,
+def setup_SR_NMF(dir_pnet_result: str, K=17, Combine_Scan=False, file_gFN=None, init='random', samplingMethod='Scan', sampleSize='Automatic', nBS=50, nTPoints=99999, maxIter=(2000, 500), minIter=200, meanFitRatio=0.1, error=1e-8,
                  normW=1, Alpha=2, Beta=30, alphaS=0, alphaL=0, vxI=0, ard=0, eta=0, nRepeat=5, Parallel=False, Computation_Mode='CPU', N_Thread=1, dataPrecision='double', outputFormat='Both'):
     """
     Setup SR-NMF parameters to compute gFNs and pFNs

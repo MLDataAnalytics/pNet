@@ -13,7 +13,7 @@ from Basic.Matrix_Computation import *
 
 
 def setup_SR_NMF(dir_pnet_result: str or None, K=17, Combine_Scan=False,
-                 file_gFN=None, init='random', samplingMethod='Subject', sampleSize='Automatic', nBS=50, nTPoints=99999,
+                 file_gFN=None, init='random', samplingMethod='Scan', sampleSize='Automatic', nBS=50, nTPoints=99999,
                  maxIter=(2000, 500), minIter=200, meanFitRatio=0.1, error=1e-8,
                  normW=1, Alpha=2, Beta=30, alphaS=0, alphaL=0, vxI=0, ard=0, eta=0, nRepeat=5,
                  Parallel=False, Computation_Mode='CPU', N_Thread=1, dataPrecision='double', outputFormat='Both'):
@@ -30,7 +30,7 @@ def setup_SR_NMF(dir_pnet_result: str or None, K=17, Combine_Scan=False,
                  'random': non-negative random matrices, scaled with: sqrt(X.mean() / n_components)
                  'nndsvd': Nonnegative Double Singular Value Decomposition (NNDSVD) initialization (better for sparseness)
                  'nndsvdar' NNDSVD with zeros filled with small random values (generally faster, less accurate alternative to NNDSVDa for when spars
-    :param samplingMethod: 'Subject' or 'Group_Subject'. Uniform sampling based subject ID, or group and then subject ID
+    :param samplingMethod: 'Subject', 'Scan',  or 'Group_Subject'. Uniform sampling based subject ID, or group and then subject ID
     :param sampleSize: 'Automatic' or integer number, number of subjects selected for each bootstrapping run
     :param nBS: 'Automatic' or integer number, number of runs for bootstrap
     :param maxIter: maximum iteration number for multiplicative update, which can be one number or two numbers for gFN and pFN separately
@@ -141,7 +141,7 @@ def update_model_parameter(dir_pnet_result: str or None, FN_model_parameter, set
     FN_Model = dict(
         file_gFN=None,
         init='random',
-        samplingMethod='Subject',
+        samplingMethod='Scan',
         sampleSize='Automatic',
         nBS=50,
         nTPoints=99999,
@@ -231,7 +231,7 @@ def construct_Laplacian_gNb(gNb: np.ndarray, dim_space, vxI=0, X=None, alphaL=10
                 W[yi, xi] = corrVal
 
     # Defining other matrices
-    DCol = np.array(W.sum(axis=1), dtype=np_float).flatten()
+    DCol = np.array(W.sum(axis=1), dtype=np_float).flatten() + 1.0e-8
     D = scipy.sparse.spdiags(DCol, 0, dim_space, dim_space)
     L = D - W
     if normW > 0:
