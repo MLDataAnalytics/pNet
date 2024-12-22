@@ -53,7 +53,8 @@ pip install .
 * A mask image for excluding voxels/vertices of uninterest (The brain mask should be a binary 3D image (1: foreground and 0: background) with the same spatial dimensions as the preprocessed fMRI scans. It is recommended that the brain mask covers the entire gray matter regions of the brain while excluding non-gray matter regions. Additionally, the non-zero regions of the mask should be connected, without any isolated voxels.),
 * A brain template image/surface for visualization.
 * A script can be found in [cli folder](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli) for preparing the brain template data and [precomputed templates](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template) are avaiable for data preprocessed with HCP pipelines.
-* Precomputed group FNs are provided in [Group_FNs](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs). They can be used to guide the computation of personalized FNs.
+* Precomputed group FNs ![group_FNs](https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Group_FNs/hcp_1200_surface_FNs_visualization/All(Compressed).jpg)
+are provided in [Group_FNs](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs). They can be used to guide the computation of personalized FNs.
 
 #### 2. Example files of scans and configuration
 
