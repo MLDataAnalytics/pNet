@@ -267,7 +267,7 @@ Code examples and usages
        )
 
 
-Brain templates and gropu level FNs
+Brain templates and precomputed group FNs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Brain Template
@@ -297,7 +297,7 @@ A brain template provides a brain mask and an overlay structural image for volum
    Step-by-step `instructions <https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Brain_Template/create_vol_template.md>`__ illustrate how to create a brain template from a gray matter mask and an overlap brain image.
 
 
-Precomputed group-level FNs
+Precomputed group FNs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Precomputed group FNs are provided in `Group_FNs <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs>`__. They can be used to guide the computation of personalized FNs.
