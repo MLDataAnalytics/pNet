@@ -274,7 +274,7 @@ Brain Template
 ^^^^^^^^^^^^^^^
 A brain template provides a brain mask and an overlay structural image for volume data (both in the same space of the preprocessed fMRI data), and 3D coordinates for brain surface data.
 
-- Five built-in brain templates are located in the `Brain_Template <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template/>`__ subfolder:
+- Five built-in brain templates are located in the `Brain_Template <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template/>`__ subfolders:
 
 ::
    
