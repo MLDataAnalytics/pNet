@@ -82,13 +82,13 @@ Script usages
 
 -  Precomputed group FNs 
 .. figure::
-   https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Group_FNs/hcp_1200_surface_FNs_visualization/All(Compressed).jpg
+   https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Group_FNs/hcp_1200_surface_FNs_visualization/All(Compressed).png
    :alt: group_FNs
 
 and
 
 .. figure::
-   https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Group_FNs/Vol_Group_FNs_aging/All.jpg
+   https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Group_FNs/Vol_Group_FNs_aging/All(Compressed).png
    :alt: vol_group_FNs
 
 are provided in `Group_FNs <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs>`__. They can be used to guide the computation of personalized FNs.
