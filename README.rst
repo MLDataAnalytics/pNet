@@ -88,7 +88,7 @@ Script usages
 and
 
 .. figure::
-   https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Group_FNs/Vol_Group_FNs/All(Compressed).jpg
+   https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Group_FNs/Vol_Group_FNs_aging/All.jpg
    :alt: vol_group_FNs
 
 are provided in `Group_FNs <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs>`__. They can be used to guide the computation of personalized FNs.
