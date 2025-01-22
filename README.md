@@ -214,9 +214,9 @@ pnet.workflow_simple(
 
 ## Brain templates and gropu level FNs
 ### Brain Template
-The brain templates provide a brain mask and an overlay structural image for volume data (both in the same space of the preprocessed fMRI data), and 3D coordinates for brain surface data.
+A brain template provides a brain mask and an overlay structural image for volume data (both in the same space of the preprocessed fMRI data), and 3D coordinates for brain surface data.
 
-**Five built-in brain templates are located in the "Brain_Template" subfolder:**
+**Five built-in brain templates are located in [Brain_Template](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template) subfolders:**
 ```
 HCP Surface: Located in the "HCP_Surface" subfolder, this template contains 3D mesh shapes (vertices and faces) and brain masks for both hemispheres.
 FreeSurfer fsaverage5: Located in the "FreeSurfer_fsaverage5" subfolder, this template is similar in structure to the HCP Surface template.
@@ -225,7 +225,7 @@ HCP Surface-Volume: This template contains both cortical surface information and
 HCP Volume: This template is similar in structure to the MNI Volume Space template.
 ```
 
-**Scripts and examples for generating costum templagte:**
+**Scripts and examples for generating custom templates::**
 
 Scripts can be found in [cli folder](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli) for preparing the brain template data
 
