@@ -212,6 +212,44 @@ pnet.workflow_simple(
     )
 ```
 
+## Brain templates and gropu level FNs
+### Brain Template
+The brain templates provide a brain mask and an overlay structural image for volume data (both in the same space of the preprocessed fMRI data), and 3D coordinates for brain surface data.
+
+**Five built-in brain templates are located in the "Brain_Template" subfolder:**
+```
+HCP Surface: Located in the "HCP_Surface" subfolder, this template contains 3D mesh shapes (vertices and faces) and brain masks for both hemispheres.
+FreeSurfer fsaverage5: Located in the "FreeSurfer_fsaverage5" subfolder, this template is similar in structure to the HCP Surface template.
+MNI Volume Space: Located in the "MNI_Volume" subfolder, this template contains two MATLAB files: "Brain_Mask.mat" and "Overlay_Image.mat".
+HCP Surface-Volume: This template contains both cortical surface information and subcortical volume data.
+HCP Volume: This template is similar in structure to the MNI Volume Space template.
+```
+
+**Scripts and examples for generating costum templagte:**
+
+Scripts can be found in [cli folder](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli) for preparing the brain template data
+
+[Precomputed templates](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template) are avaiable for data preprocessed with HCP/fMRIprep pipelines
+
+Step-by-step [instructions](https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Brain_Template/create_vol_template.md) illustrate how to create a brain template from a gray matter mask and an overlap brain image.
+
+
+### Existing group-level FNs
+
+Precomputed group FNs are provided in [Group_FNs](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs). They can be used to guide the computation of personalized FNs.
+
+### Quality Control
+
+pNet generates a report that facilitates examination of the one-to-one correspondence between group-level functional networks (gFNs) and personalized functional networks (pFNs), including figures illustrating their spatial correspondence and comparing their functional coherence.
+
+![299868334-22f08f1f-a085-4df8-907b-1f7ae0e23c13](https://github.com/user-attachments/assets/36adc816-aefb-470f-9923-5d82b0433007)
+
+
+### Report
+pNet also generates an HTML-based report to facilitate visualization of gFNs, pFNs via hyperlinks, and quality control metrics.
+
+![299868795-7996c5a0-971d-4e0b-9cab-4b85f15a3682](https://github.com/user-attachments/assets/65546842-3784-43b0-8e3e-c089e4ab3cce)
+
 ## References
 * Li H, Satterthwaite TD, Fan Y. [Large-scale sparse functional networks from resting state fMRI](https://pubmed.ncbi.nlm.nih.gov/28483721/). ***Neuroimage***. 2017 Aug 1;156:1-13. doi: 10.1016/j.neuroimage.2017.05.004. Epub 2017 May 5. PMID: 28483721; PMCID: PMC5568802.
 * Cui Z, Li H, Xia CH, Larsen B, Adebimpe A, Baum GL, Cieslak M, Gur RE, Gur RC, Moore TM, Oathes DJ, Alexander-Bloch AF, Raznahan A, Roalf DR, Shinohara RT, Wolf DH, Davatzikos C, Bassett DS, Fair DA, Fan Y, Satterthwaite TD. [Individual Variation in Functional Topography of Association Networks in Youth](https://pubmed.ncbi.nlm.nih.gov/32078800/). ***Neuron***. 2020 Apr 22;106(2):340-353.e8. doi: 10.1016/j.neuron.2020.01.029. Epub 2020 Feb 19. PMID: 32078800; PMCID: PMC7182484.
