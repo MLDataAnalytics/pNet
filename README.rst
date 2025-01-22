@@ -266,6 +266,61 @@ Code examples and usages
            nTPoints=nTPoints
        )
 
+
+Brain templates and gropu level FNs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Brain Template
+^^^^^^^^^^^^^^^
+A brain template provides a brain mask and an overlay structural image for volume data (both in the same space of the preprocessed fMRI data), and 3D coordinates for brain surface data.
+
+- Five built-in brain templates are located in the `Brain_Template <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template/>`__ subfolder:
+
+::
+   
+   HCP Surface: Located in the "HCP_Surface" subfolder, this template contains 3D mesh shapes (vertices and faces) and brain masks for both hemispheres.
+
+   FreeSurfer fsaverage5: Located in the "FreeSurfer_fsaverage5" subfolder, this template is similar in structure to the HCP Surface template.
+   
+   MNI Volume Space: Located in the "MNI_Volume" subfolder, this template contains two MATLAB files: "Brain_Mask.mat" and "Overlay_Image.mat".
+
+   HCP Surface-Volume: This template contains both cortical surface information and subcortical volume data.
+   
+   HCP Volume: This template is similar in structure to the MNI Volume Space template.
+   
+- Scripts and examples for generating custom templates:
+
+   Scripts can be found in `cli folder <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli>`__ for preparing the brain template data
+
+   `Precomputed templates <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template>`__ are avaiable for data preprocessed with HCP/fMRIprep pipelines
+
+   Step-by-step `instructions <https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Brain_Template/create_vol_template.md>`__ illustrate how to create a brain template from a gray matter mask and an overlap brain image.
+
+
+Precomputed group-level FNs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Precomputed group FNs are provided in `Group_FNs <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs>`__. They can be used to guide the computation of personalized FNs.
+
+Quality Control
+~~~~~~~~~~~~~~~
+
+pNet generates a report that facilitates examination of the one-to-one correspondence between group-level functional networks (gFNs) and personalized functional networks (pFNs), including figures illustrating their spatial correspondence and comparing their functional coherence.
+
+.. figure:: https://github.com/user-attachments/assets/36adc816-aefb-470f-9923-5d82b0433007
+   :alt: QA_Figures
+
+
+Reports
+~~~~~~
+
+pNet also generates an HTML-based report to facilitate visualization of gFNs, pFNs via hyperlinks, and quality control metrics.
+
+.. figure:: https://github.com/user-attachments/assets/65546842-3784-43b0-8e3e-c089e4ab3cce
+   :alt: Report_figures
+
+
+
 References
 ----------
 
