@@ -81,8 +81,7 @@ Script usages
 -  Scripts can be found in `cli folder <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli>`__ for preparing the brain template data and `precomputed templates <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template>`__ are avaiable for data preprocessed with HCP/fMRIprep pipelines. Step-by-step `instructions <https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Brain_Template/create_vol_template.md>`__ illustrate how to create a brain template from a gray matter mask and an overlap brain image.
 
 -  Precomputed group FNs 
-.. figure::
-   https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Group_FNs/hcp_1200_surface_FNs_visualization/All(Compressed).png
+.. figure:: ./src/pnet/Group_FNs/hcp_1200_surface_FNs_visualization/All(Compressed).png
    :alt: group_FNs
 
 and
