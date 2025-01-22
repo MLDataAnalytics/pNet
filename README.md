@@ -234,7 +234,7 @@ Scripts can be found in [cli folder](https://github.com/MLDataAnalytics/pNet/tre
 Step-by-step [instructions](https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Brain_Template/create_vol_template.md) illustrate how to create a brain template from a gray matter mask and an overlap brain image.
 
 
-### Existing group-level FNs
+### Precomputed group-level FNs
 
 Precomputed group FNs are provided in [Group_FNs](https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs). They can be used to guide the computation of personalized FNs.
 
