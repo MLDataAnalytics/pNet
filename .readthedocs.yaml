@@ -26,7 +26,8 @@ sphinx:
 # Optionally build your docs in additional formats such as PDF
 formats:
   - pdf
-
+  - epub
+  
 python:
    install: 
      - requirements: docs/requirements.txt
