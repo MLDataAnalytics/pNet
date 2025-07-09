@@ -1,4 +1,37 @@
-# [pNet](https://github.com/MLDataAnalytics/pNet)
+# pNet: Personalized, Sparse Functional Network Estimation for fMRI Data
+
+[![GitHub Repository](https://img.shields.io/badge/GitHub-pNet-blue?style=for-the-badge&logo=github)](https://github.com/MLDataAnalytics/pNet)
+[![Original Publication](https://img.shields.io/badge/Publication-PMID%2028483721-orange?style=for-the-badge&logo=pubmed)](https://pubmed.ncbi.nlm.nih.gov/28483721)
+[![Related Work (Functional Topography)](https://img.shields.io/badge/Related%20Work-PMID%2032078800-purple?style=for-the-badge&logo=pubmed)](https://pubmed.ncbi.nlm.nih.gov/32078800)
+[![Quality Control Publication](https://img.shields.io/badge/QC%20Publication-PMID%2036706636-red?style=for-the-badge&logo=pubmed)](https://pubmed.ncbi.nlm.nih.gov/36706636)
+
+**pNet** is a powerful Python package implementing a novel algorithm for computing **personalized, sparse, non-negative large-scale functional networks** from functional Magnetic Resonance Imaging (fMRI) data. This method is designed to provide an effective characterization of individual variations in functional brain topography.
+
+---
+
+## ✨ Why pNet? Unveiling Individual Brain Topography
+
+Traditional functional network analyses often rely on group-level atlases, which can obscure crucial individual differences. pNet addresses this fundamental challenge by generating personalized functional networks that are:
+
+* **Comparable Across Subjects:** Allowing for meaningful comparisons and group-level studies while respecting individual anatomy.
+* **Subject-Specific:** Precisely capturing unique variations in each individual's functional brain organization.
+* **Enhanced Functional Coherence:** Demonstrating **improved functional coherence** within personalized networks compared to their group-level counterparts, indicating a more accurate representation of individual brain activity.
+
+---
+
+## 🛠️ Key Features & Quality Control
+
+The computation of these personalized functional networks is seamlessly integrated with robust **quality control** mechanisms. pNet provides tools for:
+
+* **Visualization:** Graphically inspect the spatial correspondence of personalized networks.
+* **Quantification:** Numerically assess the functional coherence of individual networks in reference to corresponding group-level representations.
+
+This integrated approach ensures that the derived personalized networks are not only tailored to each subject but also maintain high quality and biological plausibility, enabling more accurate insights into individual brain function and variation.
+
+---
+
+
+## 🧠[pNet](https://github.com/MLDataAnalytics/pNet)
 
 pNet is a Python package of an [algorithm](<https://pubmed.ncbi.nlm.nih.gov/28483721>) for computing personalized, sparse, non-negative large-scale functional networks from functional magnetic resonance imaging (fMRI) data, facilitating effective characterization of individual variation in [functional topography](<https://pubmed.ncbi.nlm.nih.gov/32078800>). The personalized functional networks are ***comparable across subjects*** while maintaining ***subject specific variation***, reflected by their ***improved functional coherence*** compared with their group-level counterparts. The computation of personalized functional networks is accompanied by [quality control](https://pubmed.ncbi.nlm.nih.gov/36706636), with visualization and quantification of their spatial correspondence and functional coherence in reference to their group-level counterparts. 
 
@@ -6,7 +39,11 @@ The [algorithm](<https://pubmed.ncbi.nlm.nih.gov/28483721>) has been successfull
 
 ![pnet_image](https://github.com/user-attachments/assets/25809dc1-7757-48d0-8d69-c6a23164941b)
 
-## Getting started
+
+---
+
+## 🚀 Getting Started
+
 Follow the Installation Instructions to install pNet, and then check out the [APIs](https://pnet.readthedocs.io/en/latest/api.html) and [Examples]( https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/examples) to learn how to get up and running! For visualization issues that might be caused by VTK, please check [TrobubleShooting](https://github.com/MLDataAnalytics/pNet?tab=readme-ov-file#troubleshooting).
 
 ### Run with a docker image
@@ -212,6 +249,8 @@ pnet.workflow_simple(
     )
 ```
 
+---
+
 ## Brain templates and precomputed group FNs
 ### Brain Template
 A brain template provides a brain mask and an overlay structural image for volume data (both in the same space of the preprocessed fMRI data), and 3D coordinates for brain surface data.
@@ -250,7 +289,10 @@ pNet also generates an HTML-based report to facilitate visualization of gFNs, pF
 
 ![299868795-7996c5a0-971d-4e0b-9cab-4b85f15a3682](https://github.com/user-attachments/assets/65546842-3784-43b0-8e3e-c089e4ab3cce)
 
-## References
+
+---
+
+## 📄 References
 * Li H, Satterthwaite TD, Fan Y. [Large-scale sparse functional networks from resting state fMRI](https://pubmed.ncbi.nlm.nih.gov/28483721/). ***Neuroimage***. 2017 Aug 1;156:1-13. doi: 10.1016/j.neuroimage.2017.05.004. Epub 2017 May 5. PMID: 28483721; PMCID: PMC5568802.
 * Cui Z, Li H, Xia CH, Larsen B, Adebimpe A, Baum GL, Cieslak M, Gur RE, Gur RC, Moore TM, Oathes DJ, Alexander-Bloch AF, Raznahan A, Roalf DR, Shinohara RT, Wolf DH, Davatzikos C, Bassett DS, Fair DA, Fan Y, Satterthwaite TD. [Individual Variation in Functional Topography of Association Networks in Youth](https://pubmed.ncbi.nlm.nih.gov/32078800/). ***Neuron***. 2020 Apr 22;106(2):340-353.e8. doi: 10.1016/j.neuron.2020.01.029. Epub 2020 Feb 19. PMID: 32078800; PMCID: PMC7182484.
 * Pines AR, Larsen B, Cui Z, Sydnor VJ, Bertolero MA, Adebimpe A, Alexander-Bloch AF, Davatzikos C, Fair DA, Gur RC, Gur RE, Li H, Milham MP, Moore TM, Murtha K, Parkes L, Thompson-Schill SL, Shanmugan S, Shinohara RT, Weinstein SM, Bassett DS, Fan Y, Satterthwaite TD. [Dissociable multi-scale patterns of development in personalized brain networks](https://pubmed.ncbi.nlm.nih.gov/35551181/). ***Nat Commun***. 2022 May 12;13(1):2647. doi: 10.1038/s41467-022-30244-4. PMID: 35551181; PMCID: PMC9098559.
@@ -262,24 +304,38 @@ pNet also generates an HTML-based report to facilitate visualization of gFNs, pF
 * Keller AS, Sun KY, Francisco A, Robinson H, Beydler E, Bassett DS, Cieslak M, Cui Z, Davatzikos C, Fan Y, Gardner M, Kishton R, Kornfield SL, Larsen B, Li H, Linder I, Pines A, Pritschet L, Raznahan A, Roalf DR, Seidlitz J, Shafiei G, Shinohara RT, Wolf DH, Alexander-Bloch A, Satterthwaite TD, Shanmugan S. [Reproducible Sex Differences in Personalized Functional Network Topography in Youth](<https://doi.org/10.1101/2024.09.26.615061>). bioRxiv [Preprint]. 2024 Sep 29:2024.09.26.615061. doi: 10.1101/2024.09.26.615061. PMID: 39386637; PMCID: PMC11463432.
 * Sun KY, Schmitt JE, Moore TM, Barzilay R, Almasy L, Schultz LM, Mackey AP, Kafadar E, Sha Z, Seidlitz J, Mallard TT, Cui Z, Li H, Fan Y, Fair DA, Satterthwaite TD, Keller AS, Alexander-Bloch A. [Polygenic Risk Underlies Youth Psychopathology and Personalized Functional Brain Network Topography](<https://doi.org/10.1101/2024.09.20.24314007>). ***medRxiv*** [Preprint]. 2024 Sep 27:2024.09.20.24314007. doi: 10.1101/2024.09.20.24314007. PMID: 39399003; PMCID: PMC11469391.
 
+---
 
-## Troubleshooting
-### vtk-osmesa (off-screen MESA):
-If vtk-osmesa (off-screen MESA) cannot be installed with conda (conda install -c conda-forge "vtk>=9.2=*osmesa*"), please have a try with pip (a solution provided by [albertleemon](https://github.com/albertleemon)):
+## ⚠️ Troubleshooting
 
-```
-pip install --extra-index-url https://wheels.vtk.org vtk-osmesa
-```
+### `vtk-osmesa` (Off-Screen MESA) Installation Issues
 
-## Support
-If you encounter problems or bugs with pNet, or have questions or improvement suggestions, please feel free to get in touch via the [Github issues](https://github.com/MLDataAnalytics/pNet/issues).
+If you encounter difficulties installing `vtk-osmesa` using Conda (e.g., `conda install -c conda-forge "vtk>=9.2=*osmesa*"`), you can try installing it via Pip, as suggested by [albertleemon](https://github.com/albertleemon):
 
-## Acknowledgment
-This project has been supported in part by NIH grants U24NS130411 and R01EB022573.
+```bash```
 
-## Previous versions:
-**Matlab and Python:** https://github.com/MLDataAnalytics/pNet_Matlab
+```pip install --extra-index-url [https://wheels.vtk.org](https://wheels.vtk.org) vtk-osmesa```
 
-**Matlab:** https://github.com/MLDataAnalytics/Collaborative_Brain_Decomposition
+---
 
-**GIG-ICA:** https://www.nitrc.org/projects/gig-ica/
+## 📬Contact & Support
+
+For any questions, issues, or further information regarding pNet, please utilize the official GitHub repository's [Issue Tracker](https://github.com/MLDataAnalytics/pNet/issues). We encourage you to check existing issues before opening a new one.
+
+---
+
+## 🙏 Acknowledgment
+
+This project has been generously supported in part by the National Institutes of Health (NIH) through grants **U24NS130411** and **R01EB022573**. We are grateful for their support in making this research possible.
+
+---
+
+## 📜 Previous Versions & Related Projects
+* **Matlab and Python:**
+  https://github.com/MLDataAnalytics/pNet_Matlab
+
+* **Matlab:**
+  https://github.com/MLDataAnalytics/Collaborative_Brain_Decomposition
+
+* **GIG-ICA:**
+  https://www.nitrc.org/projects/gig-ica/
