@@ -1,0 +1,3 @@
+/cbica/home/lihon/code_share/for_manuscripts/ssdl_hier_fn/example_data/example_fmri_01.nii.gz
+/cbica/home/lihon/code_share/for_manuscripts/ssdl_hier_fn/example_data/example_fmri_02.nii.gz
+/cbica/home/lihon/code_share/for_manuscripts/ssdl_hier_fn/example_data/example_fmri_03.nii.gz
