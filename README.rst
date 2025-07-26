@@ -1,18 +1,137 @@
-`pNet <https://github.com/MLDataAnalytics/pNet>`__
-====
+pNet: Personalized, Sparse Functional Network Estimation for fMRI Data
+======================================================================
 
-pNet is a Python package of an `algorithm <https://pubmed.ncbi.nlm.nih.gov/28483721>`__ for computing personalized, sparse, non-negative large-scale functional networks from functional magnetic resonance imaging (fMRI) data, facilitating effective characterization of individual variation in `functional topography <https://pubmed.ncbi.nlm.nih.gov/32078800>`__. The personalized functional networks are **comparable across subjects** while maintaining **subject specific variation**, reflected by their **improved functional coherence** compared with their group-level counterparts. The computation of personalized functional networks is accompanied by `quality control <https://pubmed.ncbi.nlm.nih.gov/36706636>`__, with visualization and quantification of their spatial correspondence and functional coherence in reference to their group-level counterparts.
+|GitHub Repository| |Original Publication| |Related Work (Functional
+Topography)| |Quality Control Publication| |New Methods|
 
-The `algorithm <https://pubmed.ncbi.nlm.nih.gov/28483721>`__ has been successfully applied to studies of `individual variation in functional topography of association networks in youth <https://pubmed.ncbi.nlm.nih.gov/32078800>`__, `sex differences in the functional topography of association networks in youth <https://pubmed.ncbi.nlm.nih.gov/35939696>`__ (replicated in `Reproducible Sex Differences in Personalized Functional Network Topography in Youth <https://www.biorxiv.org/content/10.1101/2024.09.26.615061v1>`__), `functional network topography of psychopathology in youth <https://pubmed.ncbi.nlm.nih.gov/35927072>`__, `dissociable multi-scale patterns of development in personalized brain networks <https://pubmed.ncbi.nlm.nih.gov/35551181>`__, `multiscale functional connectivity patterns of the aging brain <https://pubmed.ncbi.nlm.nih.gov/36731813>`__, `personalized functional brain network topography in youth cognition <https://pubmed.ncbi.nlm.nih.gov/38110396>`__, and `Polygenic Risk Underlies Youth Psychopathology and Personalized Functional Brain Network Topography <https://www.medrxiv.org/content/10.1101/2024.09.20.24314007v2>`__.
+**pNet** is a powerful Python package implementing a novel algorithm for
+computing **personalized, sparse, non-negative large-scale functional
+networks** from functional Magnetic Resonance Imaging (fMRI) data. This
+method is designed to provide an effective characterization of
+individual variations in functional brain topography.
+
+--------------
+
+🆕 What’s New
+-------------
+
+**2025-07-25**: Added a self-supervised deep learning framework for
+mapping `individualized multi-scale hierarchical brain functional
+networks <https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract>`__
+from fMRI data. The method captures both spatially resolved FNs and
+their inter-scale hierarchical structure, enabling a deeper
+understanding of brain functional organization and its variability
+across individuals.
+
+See
+`./Hierarchical-FNs/README.md <https://github.com/MLDataAnalytics/pNet/blob/main/Hierarchical-FNs/README.md>`__
+for details.
+
+--------------
+
+✨ Why pNet? Unveiling Individual Brain Topography
+--------------------------------------------------
+
+Traditional functional network analyses often rely on group-level
+atlases, which can obscure crucial individual differences. pNet
+addresses this fundamental challenge by generating personalized
+functional networks that are:
+
+- **Comparable Across Subjects:** Allowing for meaningful comparisons
+  and group-level studies while respecting individual anatomy.
+- **Subject-Specific:** Precisely capturing unique variations in each
+  individual’s functional brain organization.
+- **Enhanced Functional Coherence:** Demonstrating **improved functional
+  coherence** within personalized networks compared to their group-level
+  counterparts, indicating a more accurate representation of individual
+  brain activity.
+
+--------------
+
+🛠️ Key Features & Quality Control
+---------------------------------
+
+The computation of these personalized functional networks is seamlessly
+integrated with robust **quality control** mechanisms. pNet provides
+tools for:
+
+- **Visualization:** Graphically inspect the spatial correspondence of
+  personalized networks.
+- **Quantification:** Numerically assess the functional coherence of
+  individual networks in reference to corresponding group-level
+  representations.
+
+This integrated approach ensures that the derived personalized networks
+are not only tailored to each subject but also maintain high quality and
+biological plausibility, enabling more accurate insights into individual
+brain function and variation.
+
+--------------
+
+🧠\ `pNet <https://github.com/MLDataAnalytics/pNet>`__
+------------------------------------------------------
+
+pNet is a Python package of an
+`algorithm <https://pubmed.ncbi.nlm.nih.gov/28483721>`__ for computing
+personalized, sparse, non-negative large-scale functional networks from
+functional magnetic resonance imaging (fMRI) data, facilitating
+effective characterization of individual variation in `functional
+topography <https://pubmed.ncbi.nlm.nih.gov/32078800>`__. The
+personalized functional networks are **comparable across subjects**
+while maintaining **subject specific variation**, reflected by their
+**improved functional coherence** compared with their group-level
+counterparts. The computation of personalized functional networks is
+accompanied by `quality
+control <https://pubmed.ncbi.nlm.nih.gov/36706636>`__, with
+visualization and quantification of their spatial correspondence and
+functional coherence in reference to their group-level counterparts.
+
+The `algorithm <https://pubmed.ncbi.nlm.nih.gov/28483721>`__ has been
+successfully applied to studies of `individual variation in functional
+topography of association networks in
+youth <https://pubmed.ncbi.nlm.nih.gov/32078800>`__, `functional network
+topography of psychopathology in
+youth <https://pubmed.ncbi.nlm.nih.gov/35927072>`__, `sex differences in
+the functional topography of association networks in
+youth <https://pubmed.ncbi.nlm.nih.gov/35939696>`__ (replicated in
+`Reproducible Sex Differences in Personalized Functional Network
+Topography in
+Youth <https://www.biorxiv.org/content/10.1101/2024.09.26.615061v1>`__),
+`dissociable multi-scale patterns of development in personalized brain
+networks <https://pubmed.ncbi.nlm.nih.gov/35551181>`__, `multiscale
+functional connectivity patterns of the aging
+brain <https://pubmed.ncbi.nlm.nih.gov/36731813>`__, `personalized
+functional brain network topography in youth
+cognition <https://pubmed.ncbi.nlm.nih.gov/38110396>`__, and `Polygenic
+Risk Underlies Youth Psychopathology and Personalized Functional Brain
+Network
+Topography <https://www.medrxiv.org/content/10.1101/2024.09.20.24314007v2>`__.
+
+A self-supervised deep learning framework has been developed for mapping
+`individualized multi-scale hierarchical brain functional
+networks <https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract>`__
+from fMRI data. The method captures both spatially resolved FNs and
+their inter-scale hierarchical structure, enabling a deeper
+understanding of brain functional organization and its variability
+across individuals.
 
 .. figure::
    https://github.com/user-attachments/assets/25809dc1-7757-48d0-8d69-c6a23164941b
    :alt: pnet_image
 
-Getting started
----------------
+   pnet_image
 
-Follow the Installation Instructions to install pNet, and then check out the `APIs <https://pnet.readthedocs.io/en/latest/api.html>`__ and `Examples <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/examples>`__ to learn how to get up and running! For visualization issues that might be caused by VTK, please check `TrobubleShooting <https://github.com/MLDataAnalytics/pNet?tab=readme-ov-file#troubleshooting>`__.
+--------------
+
+🚀 Getting Started
+------------------
+
+Follow the Installation Instructions to install pNet, and then check out
+the `APIs <https://pnet.readthedocs.io/en/latest/api.html>`__ and
+`Examples <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/examples>`__
+to learn how to get up and running! For visualization issues that might
+be caused by VTK, please check
+`TrobubleShooting <https://github.com/MLDataAnalytics/pNet?tab=readme-ov-file#troubleshooting>`__.
 
 Run with a docker image
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -75,27 +194,38 @@ Script usages
 1. Prepare data
 ^^^^^^^^^^^^^^^
 
--  A number of preprocessed fMRI scans that have been spatially aligned to a template space (Individual fMRI scans from all subjects can be placed in the same folder. If a subject has multiple separate fMRI scans, it is recommended to create a separate subfolder for each subject and place all of that subject's fMRI scans in the same subfolder. This ensures that the computation results for different subjects are saved in separate subfolders.),
--  A mask image for excluding voxels/vertices of uninterest (The brain mask should be a binary 3D image (1: foreground and 0: background) with the same spatial dimensions as the preprocessed fMRI scans. It is recommended that the brain mask covers the entire gray matter regions of the brain while excluding non-gray matter regions. Additionally, the non-zero regions of the mask should be connected, without any isolated voxels.),
--  A brain template image/surface for visualization.
--  Scripts can be found in `cli folder <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli>`__ for preparing the brain template data and `precomputed templates <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template>`__ are avaiable for data preprocessed with HCP/fMRIprep pipelines. Step-by-step `instructions <https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Brain_Template/create_vol_template.md>`__ illustrate how to create a brain template from a gray matter mask and an overlap brain image.
-
--  Precomputed group FNs 
-.. figure:: https://github.com/user-attachments/assets/09ee14d1-5745-4b18-a4e9-8d05dfc0a05f
-   :alt: group_FNs
-
-and
-
-.. figure:: https://github.com/user-attachments/assets/0d7c7b1f-024a-4974-8522-35457f1dd3cf
-   :alt: vol_group_FNs
-
-are provided in `Group_FNs <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs>`__. They can be used to guide the computation of personalized FNs.
-
+- A number of preprocessed fMRI scans that have been spatially aligned
+  to a template space (Individual fMRI scans from all subjects can be
+  placed in the same folder. If a subject has multiple separate fMRI
+  scans, it is recommended to create a separate subfolder for each
+  subject and place all of that subject’s fMRI scans in the same
+  subfolder. This ensures that the computation results for different
+  subjects are saved in separate subfolders.),
+- A mask image for excluding voxels/vertices of uninterest (The brain
+  mask should be a binary 3D image (1: foreground and 0: background)
+  with the same spatial dimensions as the preprocessed fMRI scans. It is
+  recommended that the brain mask covers the entire gray matter regions
+  of the brain while excluding non-gray matter regions. Additionally,
+  the non-zero regions of the mask should be connected, without any
+  isolated voxels.),
+- A brain template image/surface for visualization.
+- Scripts can be found in `cli
+  folder <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli>`__
+  for preparing the brain template data and `precomputed
+  templates <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template>`__
+  are avaiable for data preprocessed with HCP/fMRIprep pipelines.
+  Step-by-step
+  `instructions <https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Brain_Template/create_vol_template.md>`__
+  illustrate how to create a brain template from a gray matter mask and
+  an overlap brain image.
+- Precomputed group FNs |group_FNs| and |vol_group_FNs| are provided in
+  `Group_FNs <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs>`__.
+  They can be used to guide the computation of personalized FNs.
 
 2. Example files of scans and configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  An example file with a list of preprocessed fMRI scans:
+- An example file with a list of preprocessed fMRI scans:
 
 ::
 
@@ -104,7 +234,7 @@ are provided in `Group_FNs <https://github.com/MLDataAnalytics/pNet/tree/main/sr
    /cbica/projects/xxx/rfMRI_REST1_LR/rfMRI_REST1_LR_Atlas_MSMAll_hp2000_clean.dts
    eries.nii
 
--  An example configration file:
+- An example configration file:
 
 ::
 
@@ -118,10 +248,11 @@ are provided in `Group_FNs <https://github.com/MLDataAnalytics/pNet/tree/main/sr
 
    [necessary_settings]
    ## Input:
-   # a txt file with a list of preprocessed fMRI scan file, one on each line 
+   # a txt file with a list of preprocessed fMRI scan file, one on each line
    file_scans = "/cbica/home/fanyo/fmripnet/examples/HCP1200_10Surfs.txt"
-   # a brain template file. A HCP surface based template is set here, prepared by pnet 
-   file_Brain_Template = "/cbica/home/fanyo/.conda/envs/fmripnet/lib/python3.8/site-packages/pnet/Brain_Template/HCP_Surface/Brain_Te   mplate.json.zip"
+   # a brain template file. A HCP surface based template is set here, prepared by pnet
+   file_Brain_Template = "/cbica/home/fanyo/.conda/envs/fmripnet/lib/python3.8/site-packages/pnet/Brain_Template/HCP_Surface/Brain_Te
+   mplate.json.zip"
    # the number of FNs to be computed, should be a positive integer number
    K = 2
    ## Output: setup the output folder
@@ -190,9 +321,9 @@ are provided in `Group_FNs <https://github.com/MLDataAnalytics/pNet/tree/main/sr
 3. Run the computation (examples can be found in examples folder)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  a script (fmripnet.py) can be found in cli folder for running the
-   computation, supplied with a configuration file (\*.toml) for setting
-   the input and output information
+- a script (fmripnet.py) can be found in cli folder for running the
+  computation, supplied with a configuration file (\*.toml) for setting
+  the input and output information
 
 ::
 
@@ -266,102 +397,238 @@ Code examples and usages
            nTPoints=nTPoints
        )
 
+--------------
 
 Brain templates and precomputed group FNs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------
 
 Brain Template
-^^^^^^^^^^^^^^^
-A brain template provides a brain mask and an overlay structural image for volume data (both in the same space of the preprocessed fMRI data), and 3D coordinates for brain surface data.
+~~~~~~~~~~~~~~
 
-- Five built-in brain templates are located in the `Brain_Template <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template/>`__ subfolders:
+A brain template provides a brain mask and an overlay structural image
+for volume data (both in the same space of the preprocessed fMRI data),
+and 3D coordinates for brain surface data.
+
+**Five built-in brain templates are located in**
+`Brain_Template <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template>`__
+**subfolders:**
 
 ::
-   
+
    HCP Surface: Located in the "HCP_Surface" subfolder, this template contains 3D mesh shapes (vertices and faces) and brain masks for both hemispheres.
-
    FreeSurfer fsaverage5: Located in the "FreeSurfer_fsaverage5" subfolder, this template is similar in structure to the HCP Surface template.
-   
    MNI Volume Space: Located in the "MNI_Volume" subfolder, this template contains two MATLAB files: "Brain_Mask.mat" and "Overlay_Image.mat".
-
    HCP Surface-Volume: This template contains both cortical surface information and subcortical volume data.
-   
    HCP Volume: This template is similar in structure to the MNI Volume Space template.
-   
-- Scripts and examples for generating custom templates:
 
-   Scripts can be found in `cli folder <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli>`__ for preparing the brain template data
+**Scripts and examples for generating custom templates::**
 
-   `Precomputed templates <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template>`__ are avaiable for data preprocessed with HCP/fMRIprep pipelines
+Scripts can be found in `cli
+folder <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/cli>`__
+for preparing the brain template data
 
-   Step-by-step `instructions <https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Brain_Template/create_vol_template.md>`__ illustrate how to create a brain template from a gray matter mask and an overlap brain image.
+`Precomputed
+templates <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Brain_Template>`__
+are avaiable for data preprocessed with HCP/fMRIprep pipelines
 
+Step-by-step
+`instructions <https://github.com/MLDataAnalytics/pNet/blob/main/src/pnet/Brain_Template/create_vol_template.md>`__
+illustrate how to create a brain template from a gray matter mask and an
+overlap brain image.
 
 Precomputed group FNs
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~
 
-Precomputed group FNs are provided in `Group_FNs <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs>`__. They can be used to guide the computation of personalized FNs.
+Precomputed group FNs are provided in
+`Group_FNs <https://github.com/MLDataAnalytics/pNet/tree/main/src/pnet/Group_FNs>`__.
+They can be used to guide the computation of personalized FNs.
 
 Quality Control
 ~~~~~~~~~~~~~~~
 
-pNet generates a report that facilitates examination of the one-to-one correspondence between group-level functional networks (gFNs) and personalized functional networks (pFNs), including figures illustrating their spatial correspondence and comparing their functional coherence.
+pNet generates a report that facilitates examination of the one-to-one
+correspondence between group-level functional networks (gFNs) and
+personalized functional networks (pFNs), including figures illustrating
+their spatial correspondence and comparing their functional coherence.
 
-.. figure:: https://github.com/user-attachments/assets/36adc816-aefb-470f-9923-5d82b0433007
-   :alt: QA_Figures
+.. figure::
+   https://github.com/user-attachments/assets/36adc816-aefb-470f-9923-5d82b0433007
+   :alt: 299868334-22f08f1f-a085-4df8-907b-1f7ae0e23c13
 
+   299868334-22f08f1f-a085-4df8-907b-1f7ae0e23c13
 
-Reports
+Report
 ~~~~~~
 
-pNet also generates an HTML-based report to facilitate visualization of gFNs, pFNs via hyperlinks, and quality control metrics.
+pNet also generates an HTML-based report to facilitate visualization of
+gFNs, pFNs via hyperlinks, and quality control metrics.
 
-.. figure:: https://github.com/user-attachments/assets/65546842-3784-43b0-8e3e-c089e4ab3cce
-   :alt: Report_figures
+.. figure::
+   https://github.com/user-attachments/assets/65546842-3784-43b0-8e3e-c089e4ab3cce
+   :alt: 299868795-7996c5a0-971d-4e0b-9cab-4b85f15a3682
 
+   299868795-7996c5a0-971d-4e0b-9cab-4b85f15a3682
 
-
-References
-----------
-
--  Li H, Satterthwaite TD, Fan Y. `Large-scale sparse functional networks from resting state fMRI <https://pubmed.ncbi.nlm.nih.gov/28483721/>`__. **Neuroimage**. 2017 Aug 1;156:1-13. doi: 10.1016/j.neuroimage.2017.05.004. Epub 2017 May 5. PMID: 28483721; PMCID: PMC5568802.
--  Cui Z, Li H, Xia CH, Larsen B, Adebimpe A, Baum GL, Cieslak M, Gur RE, Gur RC, Moore TM, Oathes DJ, Alexander-Bloch AF, Raznahan A, Roalf DR, Shinohara RT, Wolf DH, Davatzikos C, Bassett DS, Fair DA, Fan Y, Satterthwaite TD. `Individual Variation in Functional Topography of Association Networks in Youth <https://pubmed.ncbi.nlm.nih.gov/32078800/>`__. **Neuron**. 2020 Apr 22;106(2):340-353.e8. doi: 10.1016/j.neuron.2020.01.029. Epub 2020 Feb 19. PMID: 32078800; PMCID: PMC7182484.
--  Pines AR, Larsen B, Cui Z, Sydnor VJ, Bertolero MA, Adebimpe A, Alexander-Bloch AF, Davatzikos C, Fair DA, Gur RC, Gur RE, Li H, Milham MP, Moore TM, Murtha K, Parkes L, Thompson-Schill SL, Shanmugan S, Shinohara RT, Weinstein SM, Bassett DS, Fan Y, Satterthwaite TD. `Dissociable multi-scale patterns of development in personalized brain networks <https://pubmed.ncbi.nlm.nih.gov/35551181/>`__. **Nat Commun**. 2022 May 12;13(1):2647. doi: 10.1038/s41467-022-30244-4. PMID: 35551181; PMCID: PMC9098559.
--  Cui Z, Pines AR, Larsen B, Sydnor VJ, Li H, Adebimpe A, Alexander-Bloch AF, Bassett DS, Bertolero M, Calkins ME, Davatzikos C, Fair DA, Gur RC, Gur RE, Moore TM, Shanmugan S, Shinohara RT, Vogel JW, Xia CH, Fan Y, Satterthwaite TD. `Linking Individual Differences in Personalized Functional Network Topography to Psychopathology in Youth <https://pubmed.ncbi.nlm.nih.gov/35927072/>`__. **Biol Psychiatry**. 2022 Dec 15;92(12):973-983. doi: 10.1016/j.biopsych.2022.05.014. Epub 2022 May 18. PMID: 35927072; PMCID: PMC10040299.
--  Shanmugan S, Seidlitz J, Cui Z, Adebimpe A, Bassett DS, Bertolero MA, Davatzikos C, Fair DA, Gur RE, Gur RC, Larsen B, Li H, Pines A, Raznahan A, Roalf DR, Shinohara RT, Vogel J, Wolf DH, Fan Y, Alexander-Bloch A, Satterthwaite TD. `Sex differences in the functional topography of association networks in youth <https://pubmed.ncbi.nlm.nih.gov/35939696/>`__. **Proc Natl Acad Sci U S A**. 2022 Aug 16;119(33):e2110416119. doi:   10.1073/pnas.2110416119. Epub 2022 Aug 8. PMID: 35939696; PMCID: PMC9388107.
--  Keller AS, Pines AR, Shanmugan S, Sydnor VJ, Cui Z, Bertolero MA, Barzilay R, Alexander-Bloch AF, Byington N, Chen A, Conan GM, Davatzikos C, Feczko E, Hendrickson TJ, Houghton A, Larsen B, Li H, Miranda-Dominguez O, Roalf DR, Perrone A, Shetty A, Shinohara RT, Fan Y, Fair DA, Satterthwaite TD. `Personalized functional brain network topography is associated with individual differences in youth cognition <https://pubmed.ncbi.nlm.nih.gov/38110396/>`__. **Nat Commun**. 2023 Dec 18;14(1):8411. doi: 10.1038/s41467-023-44087-0. PMID: 38110396; PMCID: PMC10728159.
--  Zhou Z, Li H, Srinivasan D, Abdulkadir A, Nasrallah IM, Wen J, Doshi J, Erus G, Mamourian E, Bryan NR, Wolk DA, Beason-Held L, Resnick SM, Satterthwaite TD, Davatzikos C, Shou H, Fan Y; ISTAGING Consortium.   `Multiscale functional connectivity patterns of the aging brain learned from harmonized rsfMRI data of the multi-cohort iSTAGING study <https://pubmed.ncbi.nlm.nih.gov/36731813/>`__. **Neuroimage**. 2023 Apr 1;269:119911. doi: 10.1016/j.neuroimage.2023.119911. Epub 2023 Jan 30. PMID: 36731813; PMCID: PMC9992322.
--  Li H, Srinivasan D, Zhuo C, Cui Z, Gur RE, Gur RC, Oathes DJ, Davatzikos C, Satterthwaite TD, Fan Y. `Computing personalized brain functional networks from fMRI using self-supervised deep learning <https://pubmed.ncbi.nlm.nih.gov/36706636/>`__. **Med Image Anal**. 2023 Apr;85:102756. doi: 10.1016/j.media.2023.102756. Epub 2023 Jan 21. PMID: 36706636; PMCID: PMC10103143.
-- Keller AS, Sun KY, Francisco A, Robinson H, Beydler E, Bassett DS, Cieslak M, Cui Z, Davatzikos C, Fan Y, Gardner M, Kishton R, Kornfield SL, Larsen B, Li H, Linder I, Pines A, Pritschet L, Raznahan A, Roalf DR, Seidlitz J, Shafiei G, Shinohara RT, Wolf DH, Alexander-Bloch A, Satterthwaite TD, Shanmugan S. `Reproducible Sex Differences in Personalized Functional Network Topography in Youth <https://doi.org/10.1101/2024.09.26.615061>`__. bioRxiv [Preprint]. 2024 Sep 29:2024.09.26.615061. doi: 10.1101/2024.09.26.615061. PMID: 39386637; PMCID: PMC11463432.
-* Sun KY, Schmitt JE, Moore TM, Barzilay R, Almasy L, Schultz LM, Mackey AP, Kafadar E, Sha Z, Seidlitz J, Mallard TT, Cui Z, Li H, Fan Y, Fair DA, Satterthwaite TD, Keller AS, Alexander-Bloch A. `Polygenic Risk Underlies Youth Psychopathology and Personalized Functional Brain Network Topography <https://doi.org/10.1101/2024.09.20.24314007>`__. ***medRxiv*** [Preprint]. 2024 Sep 27:2024.09.20.24314007. doi: 10.1101/2024.09.20.24314007. PMID: 39399003; PMCID: PMC11469391.
-
-Troubleshooting
----------------
-vtk-osmesa (off-screen MESA):
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-::
-
-If vtk-osmesa (off-screen MESA) cannot be installed with conda (conda install -c conda-forge “vtk>=9.2=\ *osmesa*”), please have a try with pip (a solution provided by `albertleemon <https://github.com/albertleemon>`__):
-
-::
-
-   pip install --extra-index-url https://wheels.vtk.org vtk-osmesa
-
-Support
--------
-
-If you encounter problems or bugs with pNet, or have questions or improvement suggestions, please feel free to get in touch via the `Github issues <https://github.com/MLDataAnalytics/pNet/issues>`__.
-
-Acknowledgment
 --------------
 
-This project has been supported in part by NIH grants U24NS130411 and R01EB022573.
+📄 References
+-------------
 
-Previous versions:
+- Li H, Zhuo C, Cui Z, Cieslak M, Salo T, Gur RE, Gur RC, Shinohara RT,
+  Oathes DJ, Davatzikos C, Satterthwaite TD, Fan Y. `Mapping
+  individualized multi-scale hierarchical brain functional networks from
+  fMRI by self-supervised deep
+  learning <https://doi.org/10.1101/2025.04.07.647618>`__. bioRxiv
+  [Preprint]. 2025 Apr 7:2025.04.07.647618. doi:
+  10.1101/2025.04.07.647618. PMID: 40291726; PMCID: PMC12026987.@article
+  {Li2025.04.07.647618,
+
+- Li H, Satterthwaite TD, Fan Y. `Large-scale sparse functional networks
+  from resting state
+  fMRI <https://pubmed.ncbi.nlm.nih.gov/28483721/>`__. **Neuroimage**.
+  2017 Aug 1;156:1-13. doi: 10.1016/j.neuroimage.2017.05.004. Epub 2017
+  May 5. PMID: 28483721; PMCID: PMC5568802.
+
+- Cui Z, Li H, Xia CH, Larsen B, Adebimpe A, Baum GL, Cieslak M, Gur RE,
+  Gur RC, Moore TM, Oathes DJ, Alexander-Bloch AF, Raznahan A, Roalf DR,
+  Shinohara RT, Wolf DH, Davatzikos C, Bassett DS, Fair DA, Fan Y,
+  Satterthwaite TD. `Individual Variation in Functional Topography of
+  Association Networks in
+  Youth <https://pubmed.ncbi.nlm.nih.gov/32078800/>`__. **Neuron**. 2020
+  Apr 22;106(2):340-353.e8. doi: 10.1016/j.neuron.2020.01.029. Epub 2020
+  Feb 19. PMID: 32078800; PMCID: PMC7182484.
+
+- Pines AR, Larsen B, Cui Z, Sydnor VJ, Bertolero MA, Adebimpe A,
+  Alexander-Bloch AF, Davatzikos C, Fair DA, Gur RC, Gur RE, Li H,
+  Milham MP, Moore TM, Murtha K, Parkes L, Thompson-Schill SL, Shanmugan
+  S, Shinohara RT, Weinstein SM, Bassett DS, Fan Y, Satterthwaite TD.
+  `Dissociable multi-scale patterns of development in personalized brain
+  networks <https://pubmed.ncbi.nlm.nih.gov/35551181/>`__. **Nat
+  Commun**. 2022 May 12;13(1):2647. doi: 10.1038/s41467-022-30244-4.
+  PMID: 35551181; PMCID: PMC9098559.
+
+- Cui Z, Pines AR, Larsen B, Sydnor VJ, Li H, Adebimpe A,
+  Alexander-Bloch AF, Bassett DS, Bertolero M, Calkins ME, Davatzikos C,
+  Fair DA, Gur RC, Gur RE, Moore TM, Shanmugan S, Shinohara RT, Vogel
+  JW, Xia CH, Fan Y, Satterthwaite TD. `Linking Individual Differences
+  in Personalized Functional Network Topography to Psychopathology in
+  Youth <https://pubmed.ncbi.nlm.nih.gov/35927072/>`__. **Biol
+  Psychiatry**. 2022 Dec 15;92(12):973-983. doi:
+  10.1016/j.biopsych.2022.05.014. Epub 2022 May 18. PMID: 35927072;
+  PMCID: PMC10040299.
+
+- Shanmugan S, Seidlitz J, Cui Z, Adebimpe A, Bassett DS, Bertolero MA,
+  Davatzikos C, Fair DA, Gur RE, Gur RC, Larsen B, Li H, Pines A,
+  Raznahan A, Roalf DR, Shinohara RT, Vogel J, Wolf DH, Fan Y,
+  Alexander-Bloch A, Satterthwaite TD. `Sex differences in the
+  functional topography of association networks in
+  youth <https://pubmed.ncbi.nlm.nih.gov/35939696/>`__. **Proc Natl Acad
+  Sci U S A**. 2022 Aug 16;119(33):e2110416119. doi:
+  10.1073/pnas.2110416119. Epub 2022 Aug 8. PMID: 35939696; PMCID:
+  PMC9388107.
+
+- Keller AS, Pines AR, Shanmugan S, Sydnor VJ, Cui Z, Bertolero MA,
+  Barzilay R, Alexander-Bloch AF, Byington N, Chen A, Conan GM,
+  Davatzikos C, Feczko E, Hendrickson TJ, Houghton A, Larsen B, Li H,
+  Miranda-Dominguez O, Roalf DR, Perrone A, Shetty A, Shinohara RT, Fan
+  Y, Fair DA, Satterthwaite TD. `Personalized functional brain network
+  topography is associated with individual differences in youth
+  cognition <https://pubmed.ncbi.nlm.nih.gov/38110396/>`__. **Nat
+  Commun**. 2023 Dec 18;14(1):8411. doi: 10.1038/s41467-023-44087-0.
+  PMID: 38110396; PMCID: PMC10728159.
+
+- Zhou Z, Li H, Srinivasan D, Abdulkadir A, Nasrallah IM, Wen J, Doshi
+  J, Erus G, Mamourian E, Bryan NR, Wolk DA, Beason-Held L, Resnick SM,
+  Satterthwaite TD, Davatzikos C, Shou H, Fan Y; ISTAGING Consortium.
+  `Multiscale functional connectivity patterns of the aging brain
+  learned from harmonized rsfMRI data of the multi-cohort iSTAGING
+  study <https://pubmed.ncbi.nlm.nih.gov/36731813/>`__. **Neuroimage**.
+  2023 Apr 1;269:119911. doi: 10.1016/j.neuroimage.2023.119911. Epub
+  2023 Jan 30. PMID: 36731813; PMCID: PMC9992322.
+
+- Li H, Srinivasan D, Zhuo C, Cui Z, Gur RE, Gur RC, Oathes DJ,
+  Davatzikos C, Satterthwaite TD, Fan Y. `Computing personalized brain
+  functional networks from fMRI using self-supervised deep
+  learning <https://pubmed.ncbi.nlm.nih.gov/36706636/>`__. **Med Image
+  Anal**. 2023 Apr;85:102756. doi: 10.1016/j.media.2023.102756. Epub
+  2023 Jan 21. PMID: 36706636; PMCID: PMC10103143.
+
+- Keller AS, Sun KY, Francisco A, Robinson H, Beydler E, Bassett DS,
+  Cieslak M, Cui Z, Davatzikos C, Fan Y, Gardner M, Kishton R, Kornfield
+  SL, Larsen B, Li H, Linder I, Pines A, Pritschet L, Raznahan A, Roalf
+  DR, Seidlitz J, Shafiei G, Shinohara RT, Wolf DH, Alexander-Bloch A,
+  Satterthwaite TD, Shanmugan S. `Reproducible Sex Differences in
+  Personalized Functional Network Topography in
+  Youth <https://doi.org/10.1101/2024.09.26.615061>`__. bioRxiv
+  [Preprint]. 2024 Sep 29:2024.09.26.615061. doi:
+  10.1101/2024.09.26.615061. PMID: 39386637; PMCID: PMC11463432.
+
+- Sun KY, Schmitt JE, Moore TM, Barzilay R, Almasy L, Schultz LM, Mackey
+  AP, Kafadar E, Sha Z, Seidlitz J, Mallard TT, Cui Z, Li H, Fan Y, Fair
+  DA, Satterthwaite TD, Keller AS, Alexander-Bloch A. `Polygenic Risk
+  Underlies Youth Psychopathology and Personalized Functional Brain
+  Network Topography <https://doi.org/10.1101/2024.09.20.24314007>`__.
+  **medRxiv** [Preprint]. 2024 Sep 27:2024.09.20.24314007. doi:
+  10.1101/2024.09.20.24314007. PMID: 39399003; PMCID: PMC11469391.
+
+--------------
+
+⚠️ Troubleshooting
 ------------------
 
-**Matlab and Python:** https://github.com/MLDataAnalytics/pNet_Matlab
+``vtk-osmesa`` (Off-Screen MESA) Installation Issues
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Matlab:** https://github.com/MLDataAnalytics/Collaborative_Brain_Decomposition
+If you encounter difficulties installing ``vtk-osmesa`` using Conda
+(e.g., ``conda install -c conda-forge "vtk>=9.2=*osmesa*"``), you can
+try installing it via Pip, as suggested by
+`albertleemon <https://github.com/albertleemon>`__:
 
-**GIG-ICA:** https://www.nitrc.org/projects/gig-ica/
+``bash``
+
+``pip install --extra-index-url [https://wheels.vtk.org](https://wheels.vtk.org) vtk-osmesa``
+
+--------------
+
+📬Contact & Support
+-------------------
+
+For any questions, issues, or further information regarding pNet, please
+utilize the official GitHub repository’s `Issue
+Tracker <https://github.com/MLDataAnalytics/pNet/issues>`__. We
+encourage you to check existing issues before opening a new one.
+
+--------------
+
+🙏 Acknowledgment
+-----------------
+
+This project has been generously supported in part by the National
+Institutes of Health (NIH) through grants **U24NS130411** and
+**R01EB022573**. We are grateful for their support in making this
+research possible.
+
+--------------
+
+📜 Previous Versions & Related Projects
+---------------------------------------
+
+- **Matlab and Python:** https://github.com/MLDataAnalytics/pNet_Matlab
+
+- **Matlab:**
+  https://github.com/MLDataAnalytics/Collaborative_Brain_Decomposition
+
+- **GIG-ICA:** https://www.nitrc.org/projects/gig-ica/
+
+.. |GitHub Repository| image:: https://img.shields.io/badge/GitHub-pNet-blue?style=for-the-badge&logo=github
+   :target: https://github.com/MLDataAnalytics/pNet
+.. |Original Publication| image:: https://img.shields.io/badge/Publication-PMID%2028483721-orange?style=for-the-badge&logo=pubmed
+   :target: https://pubmed.ncbi.nlm.nih.gov/28483721
+.. |Related Work (Functional Topography)| image:: https://img.shields.io/badge/Related%20Work-PMID%2032078800-purple?style=for-the-badge&logo=pubmed
+   :target: https://pubmed.ncbi.nlm.nih.gov/32078800
+.. |Quality Control Publication| image:: https://img.shields.io/badge/QC%20Publication-PMID%2036706636-red?style=for-the-badge&logo=pubmed
+   :target: https://pubmed.ncbi.nlm.nih.gov/36706636
+.. |New Methods| image:: https://img.shields.io/badge/New%20Methods-bioRxiv-green?style=for-the-badge&logo=biorxiv
+   :target: https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract
+.. |group_FNs| image:: https://github.com/user-attachments/assets/09ee14d1-5745-4b18-a4e9-8d05dfc0a05f
+.. |vol_group_FNs| image:: https://github.com/user-attachments/assets/0d7c7b1f-024a-4974-8522-35457f1dd3cf
