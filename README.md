@@ -11,7 +11,7 @@
 
 ## 🆕 What's New
 
-**2025-07-25**: Added a self-supervised deep learning framework for mapping **individualized multi-scale hierarchical brain functional networks (FNs)** from fMRI data. The method captures both spatially resolved FNs and their inter-scale hierarchical structure, enabling a deeper understanding of brain functional organization and its variability across individuals.
+**2025-07-25**: Added a self-supervised deep learning framework for mapping [**individualized multi-scale hierarchical brain functional networks (FNs)**](<https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract>) from fMRI data. The method captures both spatially resolved FNs and their inter-scale hierarchical structure, enabling a deeper understanding of brain functional organization and its variability across individuals.
 
 See ./Hierarchical-FNs/README.md for details.
 
