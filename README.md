@@ -14,7 +14,7 @@
 
 **2025-07-25**: Added a self-supervised deep learning framework for mapping [**individualized multi-scale hierarchical brain functional networks**](<https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract>) from fMRI data. The method captures both spatially resolved FNs and their inter-scale hierarchical structure, enabling a deeper understanding of brain functional organization and its variability across individuals.
 
-See ./Hierarchical-FNs/README.md for details.
+See [./Hierarchical-FNs/README.md](https://github.com/MLDataAnalytics/pNet/blob/main/Hierarchical-FNs/README.md) for details.
 
 ---
 
@@ -46,7 +46,7 @@ pNet is a Python package of an [algorithm](<https://pubmed.ncbi.nlm.nih.gov/2848
 
 The [algorithm](<https://pubmed.ncbi.nlm.nih.gov/28483721>) has been successfully applied to studies of [individual variation in functional topography of association networks in youth](<https://pubmed.ncbi.nlm.nih.gov/32078800>), [functional network topography of psychopathology in youth](<https://pubmed.ncbi.nlm.nih.gov/35927072>), [sex differences in the functional topography of association networks in youth](<https://pubmed.ncbi.nlm.nih.gov/35939696>) (replicated in [Reproducible Sex Differences in Personalized Functional Network Topography in Youth](<https://www.biorxiv.org/content/10.1101/2024.09.26.615061v1>)), [dissociable multi-scale patterns of development in personalized brain networks](<https://pubmed.ncbi.nlm.nih.gov/35551181>), [multiscale functional connectivity patterns of the aging brain](<https://pubmed.ncbi.nlm.nih.gov/36731813>), [personalized functional brain network topography in youth cognition](<https://pubmed.ncbi.nlm.nih.gov/38110396>), and [Polygenic Risk Underlies Youth Psychopathology and Personalized Functional Brain Network Topography](<https://www.medrxiv.org/content/10.1101/2024.09.20.24314007v2>).
 
-A self-supervised deep learning framework has been developed for mapping [**individualized multi-scale hierarchical brain functional networks (FNs)**](<https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract>) from fMRI data. The method captures both spatially resolved FNs and their inter-scale hierarchical structure, enabling a deeper understanding of brain functional organization and its variability across individuals.
+A self-supervised deep learning framework has been developed for mapping [**individualized multi-scale hierarchical brain functional networks**](<https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract>) from fMRI data. The method captures both spatially resolved FNs and their inter-scale hierarchical structure, enabling a deeper understanding of brain functional organization and its variability across individuals.
 
 ![pnet_image](https://github.com/user-attachments/assets/25809dc1-7757-48d0-8d69-c6a23164941b)
 
