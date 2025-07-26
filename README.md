@@ -4,7 +4,7 @@
 [![Original Publication](https://img.shields.io/badge/Publication-PMID%2028483721-orange?style=for-the-badge&logo=pubmed)](https://pubmed.ncbi.nlm.nih.gov/28483721)
 [![Related Work (Functional Topography)](https://img.shields.io/badge/Related%20Work-PMID%2032078800-purple?style=for-the-badge&logo=pubmed)](https://pubmed.ncbi.nlm.nih.gov/32078800)
 [![Quality Control Publication](https://img.shields.io/badge/QC%20Publication-PMID%2036706636-red?style=for-the-badge&logo=pubmed)](https://pubmed.ncbi.nlm.nih.gov/36706636)
-[![New Methods)](https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract)
+[![New Methods](https://img.shields.io/badge/New%20Methods-bioRxiv-green?style=for-the-badge&logo=biorxiv)](https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract)
 
 **pNet** is a powerful Python package implementing a novel algorithm for computing **personalized, sparse, non-negative large-scale functional networks** from functional Magnetic Resonance Imaging (fMRI) data. This method is designed to provide an effective characterization of individual variations in functional brain topography.
 
@@ -12,7 +12,7 @@
 
 ## 🆕 What's New
 
-**2025-07-25**: Added a self-supervised deep learning framework for mapping [**individualized multi-scale hierarchical brain functional networks (FNs)**](<https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract>) from fMRI data. The method captures both spatially resolved FNs and their inter-scale hierarchical structure, enabling a deeper understanding of brain functional organization and its variability across individuals.
+**2025-07-25**: Added a self-supervised deep learning framework for mapping [**individualized multi-scale hierarchical brain functional networks**](<https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract>) from fMRI data. The method captures both spatially resolved FNs and their inter-scale hierarchical structure, enabling a deeper understanding of brain functional organization and its variability across individuals.
 
 See ./Hierarchical-FNs/README.md for details.
 
@@ -304,6 +304,8 @@ pNet also generates an HTML-based report to facilitate visualization of gFNs, pF
 ---
 
 ## 📄 References
+* Li H, Zhuo C, Cui Z, Cieslak M, Salo T, Gur RE, Gur RC, Shinohara RT, Oathes DJ, Davatzikos C, Satterthwaite TD, Fan Y. [Mapping individualized multi-scale hierarchical brain functional networks from fMRI by self-supervised deep learning](https://doi.org/10.1101/2025.04.07.647618). bioRxiv [Preprint]. 2025 Apr 7:2025.04.07.647618. doi: 10.1101/2025.04.07.647618. PMID: 40291726; PMCID: PMC12026987.@article {Li2025.04.07.647618,
+
 * Li H, Satterthwaite TD, Fan Y. [Large-scale sparse functional networks from resting state fMRI](https://pubmed.ncbi.nlm.nih.gov/28483721/). ***Neuroimage***. 2017 Aug 1;156:1-13. doi: 10.1016/j.neuroimage.2017.05.004. Epub 2017 May 5. PMID: 28483721; PMCID: PMC5568802.
 * Cui Z, Li H, Xia CH, Larsen B, Adebimpe A, Baum GL, Cieslak M, Gur RE, Gur RC, Moore TM, Oathes DJ, Alexander-Bloch AF, Raznahan A, Roalf DR, Shinohara RT, Wolf DH, Davatzikos C, Bassett DS, Fair DA, Fan Y, Satterthwaite TD. [Individual Variation in Functional Topography of Association Networks in Youth](https://pubmed.ncbi.nlm.nih.gov/32078800/). ***Neuron***. 2020 Apr 22;106(2):340-353.e8. doi: 10.1016/j.neuron.2020.01.029. Epub 2020 Feb 19. PMID: 32078800; PMCID: PMC7182484.
 * Pines AR, Larsen B, Cui Z, Sydnor VJ, Bertolero MA, Adebimpe A, Alexander-Bloch AF, Davatzikos C, Fair DA, Gur RC, Gur RE, Li H, Milham MP, Moore TM, Murtha K, Parkes L, Thompson-Schill SL, Shanmugan S, Shinohara RT, Weinstein SM, Bassett DS, Fan Y, Satterthwaite TD. [Dissociable multi-scale patterns of development in personalized brain networks](https://pubmed.ncbi.nlm.nih.gov/35551181/). ***Nat Commun***. 2022 May 12;13(1):2647. doi: 10.1038/s41467-022-30244-4. PMID: 35551181; PMCID: PMC9098559.
