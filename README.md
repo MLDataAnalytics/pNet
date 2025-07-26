@@ -4,6 +4,7 @@
 [![Original Publication](https://img.shields.io/badge/Publication-PMID%2028483721-orange?style=for-the-badge&logo=pubmed)](https://pubmed.ncbi.nlm.nih.gov/28483721)
 [![Related Work (Functional Topography)](https://img.shields.io/badge/Related%20Work-PMID%2032078800-purple?style=for-the-badge&logo=pubmed)](https://pubmed.ncbi.nlm.nih.gov/32078800)
 [![Quality Control Publication](https://img.shields.io/badge/QC%20Publication-PMID%2036706636-red?style=for-the-badge&logo=pubmed)](https://pubmed.ncbi.nlm.nih.gov/36706636)
+[![New Methods)](https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract)
 
 **pNet** is a powerful Python package implementing a novel algorithm for computing **personalized, sparse, non-negative large-scale functional networks** from functional Magnetic Resonance Imaging (fMRI) data. This method is designed to provide an effective characterization of individual variations in functional brain topography.
 
