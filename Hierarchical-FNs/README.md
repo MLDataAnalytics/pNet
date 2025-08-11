@@ -168,6 +168,14 @@ For a comprehensive understanding of our methodology, results, and discussions, 
 }
 
 ```
+**Other References:** 
+
+This method is built upon the following algoirhtms:
+* Li H, Srinivasan D, Zhuo C, Cui Z, Gur RE, Gur RC, Oathes DJ, Davatzikos C, Satterthwaite TD, Fan Y. [Computing personalized brain functional networks from fMRI using self-supervised deep learning](https://pubmed.ncbi.nlm.nih.gov/36706636/). ***Med Image Anal***. 2023 Apr;85:102756. doi: 10.1016/j.media.2023.102756. Epub 2023 Jan 21. PMID: 36706636; PMCID: PMC10103143.
+* Li H, Satterthwaite TD, Fan Y. [Large-scale sparse functional networks from resting state fMRI](https://pubmed.ncbi.nlm.nih.gov/28483721/). ***Neuroimage***. 2017 Aug 1;156:1-13. doi: 10.1016/j.neuroimage.2017.05.004. Epub 2017 May 5. PMID: 28483721; PMCID: PMC5568802.
+* Li H, Satterthwaite TD, Fan Y. [Identification of subject-specific brain functional networks using a collaborative sparse nonnegative matrix decomposition method](https://doi.org/10.1109/ISBI.2016.7493430). ***2016 IEEE 13th International Symposium on Biomedical Imaging (ISBI)***, Prague, Czech Republic, 2016, pp. 984-987, doi: 10.1109/ISBI.2016.7493430.
+* Li H, Zhu X, Fan Y. [Identification of Multi-scale Hierarchical Brain Functional Networks Using Deep Matrix Factorization](https://doi.org/10.1007/978-3-030-00931-1_26). ***Med Image Comput Comput Assist Interv***. 2018 Sep;11072:223-231. doi: 10.1007/978-3-030-00931-1_26. Epub 2018 Sep 13. PMID: 30345432; PMCID: PMC6192265.
+
 ---
 
 ## 📬 Contact
