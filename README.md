@@ -48,7 +48,7 @@ The [algorithm](<https://pubmed.ncbi.nlm.nih.gov/28483721>) has been successfull
 
 A self-supervised deep learning framework has been developed for mapping [**individualized multi-scale hierarchical brain functional networks**](<https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract>) from fMRI data. The method captures both spatially resolved FNs and their inter-scale hierarchical structure, enabling a deeper understanding of brain functional organization and its variability across individuals.
 
-![pnet_image](https://github.com/user-attachments/assets/25809dc1-7757-48d0-8d69-c6a23164941b)
+![pnet_image](https://github.com/MLDataAnalytics/pNet/blob/main/assets/pNet.png)
 
 
 ---
