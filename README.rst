@@ -116,7 +116,8 @@ understanding of brain functional organization and its variability
 across individuals.
 
 .. figure::
-   https://github.com/user-attachments/assets/25809dc1-7757-48d0-8d69-c6a23164941b
+   https://github.com/MLDataAnalytics/pNet/blob/main/assets/pNet.png
+   
    :alt: pnet_image
 
    pnet_image
