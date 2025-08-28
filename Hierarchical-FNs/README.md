@@ -69,6 +69,8 @@ Preprocessed resting-state fMRI data for three randomly selected testing individ
 
 You can directly apply the pre-trained model to the example fMRI data by running the testing script. The script is pre-configured to use the demo model and data.
 
+**Before running the command below, please update the path information in ./code/config_fn_hier_lv3.py and ./example_data/tes_fmri_lst.txt.**
+
 ```bash
 python ./code/test_fn_hier_lv3.py
 ```
