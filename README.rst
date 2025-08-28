@@ -120,8 +120,6 @@ across individuals.
    
    :alt: pnet_image
 
-   pnet_image
-
 --------------
 
 🚀 Getting Started
