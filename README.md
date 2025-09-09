@@ -58,7 +58,7 @@ options:
                         Generate visualization HTML files for functional networks (FNs) and their hierarchy.
                         This process may be time-consuming.
                         Levels: 0 = no visualization (default), 1 = simple overview, 2 = FN maps, 3 = interactive viewer.
-  --qa [QA]             Generate QA measaures (default: 0 - False)
+  --qa [QA]             Generate QA measures (default: 0 - False)
   --base_dir BASE_DIR   Base directory where provided mask files are located (default: /app, DO NOT CHANGE IF USING DOCKER IMAGE)
 ```
 
