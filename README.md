@@ -34,7 +34,9 @@ These images come pre-configured with all necessary dependencies to run the func
 
 ####
 ```bash
-usage: fn_comp.py [-h] --input INPUT --output OUTPUT [--visualize {0,1,2,3}] [--qa [QA]] [--base_dir BASE_DIR] [--mask MASK]
+usage: fn_comp.py [-h] --input INPUT --output OUTPUT
+       [--visualize {0,1,2,3}] [--qa [QA]]
+       [--base_dir BASE_DIR]
 
 Compute personalized hierarchical functional networks on fMRI data.
 
