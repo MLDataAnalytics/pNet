@@ -14,6 +14,55 @@
 
 **2025-07-25**: Added a self-supervised deep learning framework for mapping [**individualized multi-scale hierarchical brain functional networks**](<https://www.biorxiv.org/content/10.1101/2025.04.07.647618v1.abstract>) from fMRI data. The method captures both spatially resolved FNs and their inter-scale hierarchical structure, enabling a deeper understanding of brain functional organization and its variability across individuals.
 
+### 🐳 Docker Support
+
+Docker images are now available for streamlined setup and deployment!
+
+#### 🔹 CPU Version
+Use this image for environments without GPU support:
+```bash
+docker pull mldataanalytics/fmripnet:dl
+```
+
+#### 🔸 GPU Version (CUDA-enabled)
+Use this image to leverage GPU acceleration:
+```bash
+docker pull mldataanalytics/fmripnet:dl_cuda
+```
+
+These images come pre-configured with all necessary dependencies to run the functional network QA pipeline. Simply pull the image and start processing your data with minimal setup.
+
+####
+```bash
+usage: fn_comp.py [-h] --input INPUT --output OUTPUT [--visualize {0,1,2,3}] [--qa [QA]] [--base_dir BASE_DIR] [--mask MASK]
+
+Compute personalized hierarchical functional networks on fMRI data.
+
+The input can be a single NIfTI file, a directory containing NIfTI files, a wildcard pattern (e.g., "*.nii.gz"), or a text file listing NIfTI files.
+
+Input images should be motion-corrected, normalized to MNI space, and smoothed with a 6-mm FWHM kernel.
+
+The output includes hierarchical functional networks, their hierarchy structure, and functional connectivity matrices, saved to the specified output directory.
+
+Examples:
+  python fn_comp.py --input subject1.nii.gz --output ./results
+  python fn_comp.py --input ./data/ --output ./results
+  python fn_comp.py --input "*.nii.gz" --output ./results
+  python fn_comp.py --input file_list.txt --output ./results
+
+options:
+  -h, --help            show this help message and exit
+  --input INPUT         Input NIfTI file, directory, wildcard, or text file with a list of NIfTI files
+  --output OUTPUT       Output directory to save results
+  --visualize {0,1,2,3}
+                        Generate visualization HTML files for functional networks (FNs) and their hierarchy.
+                        This process may be time-consuming.
+                        Levels: 0 = no visualization (default), 1 = simple overview, 2 = FN maps, 3 = interactive viewer.
+  --qa [QA]             Generate QA measaures (default: 0 - False)
+  --base_dir BASE_DIR   Base directory where provided mask files are located (default: /app, DO NOT CHANGE IF USING DOCKER IMAGE)
+```
+
+
 See [./Hierarchical-FNs/README.md](https://github.com/MLDataAnalytics/pNet/blob/main/Hierarchical-FNs/README.md) for details.
 
 ---
