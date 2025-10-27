@@ -125,11 +125,11 @@ def run_quality_control_torch(dir_pnet_result: str):
         # Report the failed scans in the final report
         if Miss_Match.shape[0] > 0:
             flag_QC += 1
-            print(' ' + str(Miss_Match.shape[0]) + ' miss matched FNs in sub folder: ' + list_subject_folder[i],
+            print(' ' + str(Miss_Match.shape[0]) + ' miss matched FNs in sub folder: ' + list_subject_folder_unique[i], # edited by hm, edit before: list_subject_folder[i],
                   file=file_Final_Report, flush=True)
 
         # Save results
-        dir_pFN_indv_QC = os.path.join(dir_pnet_QC, list_subject_folder[i])
+        dir_pFN_indv_QC = os.path.join(dir_pnet_QC, list_subject_folder_unique[i]) # edited by hm, edit before: dir_pFN_indv_QC = os.path.join(dir_pnet_QC, list_subject_folder[i])
         if not os.path.exists(dir_pFN_indv_QC):
             os.makedirs(dir_pFN_indv_QC)
         scipy.io.savemat(os.path.join(dir_pFN_indv_QC, 'Result.mat'), {'Result': Result}, do_compression=True)

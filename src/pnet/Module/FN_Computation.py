@@ -1228,88 +1228,6 @@ def bootstrap_scan(dir_output: str, file_scan: str, file_subject_ID: str, file_s
         FID.close()
 
 
-def setup_SR_NMF(dir_pnet_result: str, K=17, Combine_Scan=False, file_gFN=None, init='random', samplingMethod='Scan', sampleSize='Automatic', nBS=50, nTPoints=99999, maxIter=(2000, 500), minIter=200, meanFitRatio=0.1, error=1e-8,
-                 normW=1, Alpha=2, Beta=30, alphaS=0, alphaL=0, vxI=0, ard=0, eta=0, nRepeat=5, Parallel=False, Computation_Mode='CPU', N_Thread=1, dataPrecision='double', outputFormat='Both'):
-    """
-    Setup SR-NMF parameters to compute gFNs and pFNs
-
-    :param dir_pnet_result: directory of the pNet result folder
-    :param K: number of FNs
-    :param Combine_Scan: False or True, whether to combine multiple scans for the same subject
-    :param file_gFN: directory of a precomputed gFN in .mat format
-    :param init: 'nndsvda': NNDSVD with zeros filled with the average of X (better when sparsity is not desired)  #updated on 08/03/2024
-                 'random': non-negative random matrices, scaled with: sqrt(X.mean() / n_components)
-                 'nndsvd': Nonnegative Double Singular Value Decomposition (NNDSVD) initialization (better for sparseness)
-                 'nndsvdar' NNDSVD with zeros filled with small random values (generally faster, less accurate alternative to NNDSVDa for when spars
-    :param samplingMethod: 'Subject' or 'Group_Subject'. Uniform sampling based subject ID, or group and then subject ID
-    :param sampleSize: 'Automatic' or integer number, number of subjects selected for each bootstrapping run
-    :param nBS: 'Automatic' or integer number, number of runs for bootstrap
-    :param maxIter: maximum iteration number for multiplicative update, which can be one number or two numbers for gFN and pFN separately
-    :param minIter: minimum iteration in case fast convergence, which can be one number or two numbers for gFN and pFN separately
-    :param meanFitRatio: a 0-1 scaler, exponential moving average coefficient, used for the initialization of U when using group initialized V
-    :param error: difference of cost function for convergence
-    :param normW: 1 or 2, normalization method for W used in Laplacian regularization
-    :param Alpha: hyper parameter for spatial sparsity
-    :param Beta: hyper parameter for Laplacian sparsity
-    :param alphaS: internally determined, the coefficient for spatial sparsity based Alpha, data size, K, and gNb
-    :param alphaL: internally determined, the coefficient for Laplacian sparsity based Beta, data size, K, and gNb
-    :param vxI: flag for using the temporal correlation between nodes (vertex, voxel)
-    :param ard: 0 or 1, flat for combining similar clusters
-    :param eta: a hyper parameter for the ard regularization term
-    :param nRepeat: Any positive integer, the number of repetition to avoid poor initialization
-    :param Parallel: False or True, whether to enable parallel computation
-    :param Computation_Mode: 'CPU'
-    :param N_Thread: positive integers, used for parallel computation
-    :param dataPrecision: 'double' or 'single'
-    :param outputFormat: 'MAT', 'Both', 'MAT' is to save results in FN.mat and TC.mat for functional networks and time courses respectively. 'Both' is for both matlab format and fMRI input file format
-
-    :return: setting: a structure
-
-    Yuncong Ma, 2/2/2024
-    """
-
-    dir_pnet_dataInput, dir_pnet_FNC, _, _, _, _ = setup_result_folder(dir_pnet_result)
-
-    # Set sampleSize if it is 'Automatic'
-    if sampleSize == 'Automatic':
-        file_subject_ID = os.path.join(dir_pnet_dataInput, 'Subject_ID.txt')
-        list_subject_ID = np.array([line.replace('\n', '') for line in open(file_subject_ID, 'r')])
-        subject_ID_unique = np.unique(list_subject_ID)
-        N_Subject = subject_ID_unique.shape[0]
-        if sampleSize == 'Automatic':
-            sampleSize = np.maximum(100, np.round(N_Subject / 10))
-            if N_Subject < sampleSize:  # added by hm
-                sampleSize = N_Subject #- 1  #changed by Yong Fan: for sample datasets, all subjects/scans are used
-                #nBS = 10   # was 5, changed by Yong Fan
-
-    # add nTPoints on 08/01/2024
-    # add init on 08/03/2024
-    BootStrap = {'samplingMethod': samplingMethod, 'sampleSize': sampleSize, 'nBS': nBS, 'nTPoints': nTPoints, 'init': init}
-    Group_FN = {'file_gFN': file_gFN,
-                'BootStrap': BootStrap,
-                'maxIter': maxIter, 'minIter': minIter, 'error': error,
-                'normW': normW, 'Alpha': Alpha, 'Beta': Beta, 'alphaS': alphaS, 'alphaL': alphaL, 'vxI': vxI,
-                'ard': ard, 'eta': eta, 'nRepeat': nRepeat}
-    Personalized_FN = {'maxIter': maxIter, 'minIter': minIter, 'meanFitRatio': meanFitRatio, 'error': error,
-                       'normW': normW, 'Alpha': Alpha, 'Beta': Beta, 'alphaS': alphaS, 'alphaL': alphaL,
-                       'vxI': vxI, 'ard': ard, 'eta': eta}
-    Computation = {'Parallel': Parallel,
-                   'Model': Computation_Mode,
-                   'N_Thread': N_Thread,
-                   'dataPrecision': dataPrecision}
-
-    setting = {'Method': 'SR-NMF',
-               'K': K,
-               'Combine_Scan': Combine_Scan,
-               'Group_FN': Group_FN,
-               'Personalized_FN': Personalized_FN,
-               'Computation': Computation,
-               'Output_Format': outputFormat}
-
-    write_json_setting(setting, os.path.join(dir_pnet_FNC, 'Setting.json'))
-    return setting
-
-
 def setup_pFN_folder(dir_pnet_result: str):
     """
     setup_pFN_folder(dir_pnet_result: str)
@@ -1356,7 +1274,7 @@ def setup_pFN_folder(dir_pnet_result: str):
         file_scan_ind = os.path.join(dir_pnet_pFN_indv, 'Scan_List.txt')
         file_scan_ind = open(file_scan_ind, 'w')
         for j in range(len(scan_index)):
-            print(list_scan[scan_index[j]] + '\n', file=file_scan_ind)
+            print(list_scan[scan_index[j]], file=file_scan_ind) #edited by hm, before edit: print(list_scan[scan_index[j]] + '\n', file=file_scan_ind)
         file_scan_ind.close()
 
     return list_subject_folder_unique

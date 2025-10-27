@@ -26,6 +26,7 @@ def workflow(dir_pnet_result: str,
              maskValue=0,
              file_surfL_inflated=None, file_surfR_inflated=None,
              method='SR-NMF',
+             sr_param=[2, 30],   # For SR-NMF: [Alpha, Beta], for GIG-ICA: scalar (a)
              K=17,
              init='random',
              sampleSize='Automatic',
@@ -160,6 +161,7 @@ def workflow(dir_pnet_result: str,
                         nTPoints=nTPoints,
                         Combine_Scan=Combine_Scan,
                         file_gFN=file_gFN,
+                        Alpha=sr_param[0], Beta=sr_param[1],
                         Parallel=Parallel, Computation_Mode=Computation_Mode, N_Thread=N_Thread,
                         dataPrecision=dataPrecision,
                         outputFormat=outputFormat
@@ -173,6 +175,7 @@ def workflow(dir_pnet_result: str,
             K=K,
             Combine_Scan=Combine_Scan,
             file_gFN=file_gFN,
+            a=sr_param,
             Parallel=Parallel, Computation_Mode=Computation_Mode, N_Thread=N_Thread,
             dataPrecision=dataPrecision,
             outputFormat=outputFormat
@@ -223,7 +226,8 @@ def workflow_simple(dir_pnet_result: str,
                     nBS=5,
                     nTPoints=99999,
                     Combine_Scan=False,
-                    file_gFN=None):
+                    file_gFN=None,
+                    sr_param=[2, 30]):  # For SR-NMF: [Alpha, Beta], for GIG-ICA: scalar (a)
     """
     Run the workflow of pNet, including Data Input, FN Computation, Quality Control and Visualization
     This is a minimal version of run_workflow for fast deployment using a single job
@@ -277,14 +281,16 @@ def workflow_simple(dir_pnet_result: str,
             nBS=nBS,
             nTPoints=nTPoints,
             Combine_Scan=Combine_Scan,
-            file_gFN=file_gFN
+            file_gFN=file_gFN,
+            Alpha=sr_param[0], Beta=sr_param[1]
         )
     elif method == 'GIG-ICA':
         GIG_ICA.setup_GIG_ICA(
             dir_pnet_result,
             K=K,
             Combine_Scan=Combine_Scan,
-            file_gFN=file_gFN
+            file_gFN=file_gFN,
+            a=sr_param
         )
     # perform FN computation
     run_FN_Computation_torch(dir_pnet_result)
@@ -735,6 +741,7 @@ def workflow_cluster(dir_pnet_result: str,
                      nTPoints=99999,
                      Combine_Scan=False,
                      file_gFN=None,
+                     sr_param=[2, 30],
                      FN_model_parameter=None,
                      outputFormat='Both',
                      Computation_Mode='CPU_Torch',
@@ -916,6 +923,7 @@ def workflow_cluster(dir_pnet_result: str,
         print(f"file_gFN = None", file=file_script)
     else:
         print(f"file_gFN = '{file_gFN}'", file=file_script)
+    print(f"sr_param = {sr_param}", file=file_script)
     print(f"FN_model_parameter = {FN_model_parameter}", file=file_script)
 
     # setup FN models
@@ -929,6 +937,7 @@ def workflow_cluster(dir_pnet_result: str,
                         nTPoints=nTPoints,
                         Combine_Scan=Combine_Scan,
                         file_gFN=file_gFN,
+                        Alpha=sr_param[0], Beta=sr_param[1],
                         Computation_Mode=Computation_Mode,
                         dataPrecision=dataPrecision,
                         outputFormat=outputFormat
@@ -941,6 +950,7 @@ def workflow_cluster(dir_pnet_result: str,
             K=K,
             Combine_Scan=Combine_Scan,
             file_gFN=file_gFN,
+            a=sr_param,
             Computation_Mode=Computation_Mode,
             dataPrecision=dataPrecision,
             outputFormat=outputFormat

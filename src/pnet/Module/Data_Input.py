@@ -1269,8 +1269,8 @@ def setup_result_folder(dir_pnet_result: str):
     if not os.path.exists(dir_pnet_QC):
         os.makedirs(dir_pnet_QC)
     dir_pnet_STAT = os.path.join(dir_pnet_result, 'Statistics')
-    if not os.path.exists(dir_pnet_STAT):
-        os.makedirs(dir_pnet_STAT)
+    #if not os.path.exists(dir_pnet_STAT):
+    #    os.makedirs(dir_pnet_STAT)
 
     return dir_pnet_dataInput, dir_pnet_FNC, dir_pnet_gFN, dir_pnet_pFN, dir_pnet_QC, dir_pnet_STAT
 

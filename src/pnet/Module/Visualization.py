@@ -10,6 +10,7 @@ import matplotlib
 import numpy as np
 import surfplot
 from brainspace.mesh.mesh_creation import build_polydata
+from brainspace.plotting.base import Plotter    # added by hm
 from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
 
@@ -511,6 +512,7 @@ def plot_brain_surface(brain_map: np.ndarray,
         fig = p.build()
         fig.savefig(file_output, dpi=dpi, bbox_inches="tight", facecolor=background)
         image_rgb = np.array(Image.open(file_output))
+        Plotter.close_all()     # added by hm
         matplotlib.pyplot.close()
         gc.collect()
         return image_rgb
@@ -519,6 +521,7 @@ def plot_brain_surface(brain_map: np.ndarray,
         p._check_offscreen()
         image_rgb = p.to_numpy(transparent_bg=True, scale=(2, 2))
         del p
+        Plotter.close_all()     # added by hm
         matplotlib.pyplot.close()
         gc.collect()
         return image_rgb

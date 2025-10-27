@@ -59,6 +59,7 @@ if method == 'SR-NMF':
         nTPoints=nTPoints,
         Combine_Scan=Combine_Scan,
         file_gFN=file_gFN,
+        Alpha=sr_param[0], Beta=sr_param[1],
         Computation_Mode=Computation_Mode,
         dataPrecision=dataPrecision,
         outputFormat=outputFormat
@@ -74,6 +75,7 @@ elif method == 'GIG-ICA':
         K=K,
         Combine_Scan=Combine_Scan,
         file_gFN=file_gFN,
+        a=sr_param,
         Computation_Mode=Computation_Mode,
         dataPrecision=dataPrecision,
         outputFormat=outputFormat
